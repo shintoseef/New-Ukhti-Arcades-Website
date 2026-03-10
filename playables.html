@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Ukhti Games Playables</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800;900&display=swap" rel="stylesheet" />
+<style>
+  /* Reset and base */
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
+  body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: 'Poppins', sans-serif;
+    background: #0f0f1a;
+    color: #e6e6fa;
+    overflow-x: hidden;
+  }
+  a {
+    color: #7c5cff;
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+  a:hover {
+    color: #5d39ff;
+  }
+
+  /* Floating Particles Background */
+  #particles-js {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    z-index: 0;
+    background: linear-gradient(135deg, #0f0f1a 0%, #1a1a2e 100%);
+  }
+
+  /* Container */
+  .container {
+    position: relative;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 60px 24px 80px;
+    z-index: 10;
+  }
+
+  /* Header and Back Button */
+  header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 48px;
+    flex-wrap: wrap;
+  }
+  header h1 {
+    font-weight: 900;
+    font-size: 2.8rem;
+    color: #7c5cff;
+    margin: 0;
+    flex: 1 1 auto;
+  }
+  .back-btn {
+    background: linear-gradient(180deg, #7c5cff, #5d39ff);
+    border: none;
+    padding: 12px 26px;
+    border-radius: 30px;
+    font-weight: 600;
+    font-size: 1rem;
+    color: white;
+    cursor: pointer;
+    box-shadow: 0 6px 15px rgba(124, 92, 255, 0.65);
+    transition: transform 0.25s ease, box-shadow 0.3s ease;
+    flex-shrink: 0;
+  }
+  .back-btn:hover,
+  .back-btn:focus {
+    transform: scale(1.05);
+    box-shadow: 0 10px 25px rgba(124, 92, 255, 0.85);
+    outline: none;
+  }
+
+  /* Gallery */
+  .gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 28px;
+    justify-items: center;
+    margin-bottom: 40px;
+  }
+  .card {
+    background: #1c1c33;
+    border-radius: 22px;
+    box-shadow: 0 0 25px rgba(124, 92, 255, 0.3);
+    overflow: hidden;
+    width: 100%;
+    max-width: 320px;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .card:hover,
+  .card:focus-within {
+    transform: scale(1.03);
+    box-shadow: 0 0 35px rgba(124, 92, 255, 0.7);
+    outline: none;
+  }
+  .thumb {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 9 / 16;
+    overflow: hidden;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    background: #111123;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+  }
+  .card:hover .thumb img,
+  .card:focus-within .thumb img {
+    transform: scale(1.05);
+  }
+  .play-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(124, 92, 255, 0.55);
+    opacity: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.3s ease;
+    border-radius: 0 0 22px 22px;
+  }
+  .card:hover .play-overlay,
+  .card:focus-within .play-overlay {
+    opacity: 1;
+  }
+  .play-btn {
+    background: linear-gradient(180deg, #7c5cff, #5d39ff);
+    border: none;
+    border-radius: 30px;
+    padding: 14px 32px;
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: white;
+    cursor: pointer;
+    box-shadow: 0 0 20px rgba(124, 92, 255, 0.85), 0 12px 30px rgba(124, 92, 255, 0.45);
+    transition: transform 0.25s ease;
+  }
+  .play-btn:hover,
+  .play-btn:focus {
+    transform: scale(1.1);
+    outline: none;
+  }
+  .card-content {
+    padding: 20px 24px 28px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+  }
+  .card-title {
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin: 0 0 8px;
+    color: #b9aaff;
+  }
+  .card-note {
+    font-size: 0.9rem;
+    color: #a3a3c2;
+    flex-grow: 1;
+  }
+
+  /* Show More / Collapse Button */
+  .btn-wrapper {
+    text-align: center;
+    margin-bottom: 64px;
+  }
+  .toggle-btn {
+    background: linear-gradient(180deg, #7c5cff, #5d39ff);
+    border: none;
+    border-radius: 30px;
+    padding: 14px 48px;
+    font-weight: 700;
+    font-size: 1.2rem;
+    color: white;
+    cursor: pointer;
+    box-shadow: 0 0 25px rgba(124, 92, 255, 0.8), 0 14px 40px rgba(124, 92, 255, 0.4);
+    transition: background 0.3s ease, transform 0.3s ease;
+  }
+  .toggle-btn:hover,
+  .toggle-btn:focus {
+    background: linear-gradient(180deg, #5d39ff, #7c5cff);
+    outline: none;
+    transform: scale(1.05);
+  }
+
+  /* Modal */
+  .modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(15, 15, 26, 0.95);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    padding: 20px;
+  }
+  .modal.active {
+    display: flex;
+  }
+  .modal-content {
+    position: relative;
+    width: 100%;
+    max-width: 400px;
+    aspect-ratio: 9 / 16;
+    background: #1c1c33;
+    border-radius: 28px;
+    box-shadow: 0 0 40px rgba(124, 92, 255, 0.7);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+  .modal-close {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    background: rgba(0, 0, 0, 0.6);
+    border: none;
+    color: #e6e6fa;
+    font-size: 28px;
+    font-weight: 700;
+    border-radius: 50%;
+    width: 42px;
+    height: 42px;
+    cursor: pointer;
+    box-shadow: 0 0 12px rgba(124, 92, 255, 0.7);
+    transition: background 0.3s ease;
+    z-index: 10;
+  }
+  .modal-close:hover,
+  .modal-close:focus {
+    background: rgba(92, 57, 255, 0.85);
+    outline: none;
+  }
+  iframe.playable-frame {
+    border: none;
+    width: 100%;
+    height: 100%;
+    border-radius: 0 0 28px 28px;
+    background: #000;
+  }
+
+  /* Testimonials Section */
+  section.testimonials {
+    background: #1a1a2e;
+    padding: 60px 24px 80px;
+    border-radius: 28px;
+    box-shadow: 0 0 40px rgba(124, 92, 255, 0.4);
+    margin-bottom: 80px;
+  }
+  section.testimonials h2 {
+    text-align: center;
+    font-weight: 900;
+    font-size: 2.6rem;
+    color: #7c5cff;
+    margin-bottom: 48px;
+  }
+  .testimonial-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 32px;
+    max-width: 960px;
+    margin: 0 auto;
+  }
+  .testimonial-card {
+    background: #22223b;
+    border-radius: 22px;
+    padding: 26px 24px;
+    box-shadow: 0 0 25px rgba(124, 92, 255, 0.3);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    color: #cfcfff;
+  }
+  .testimonial-text {
+    font-style: italic;
+    font-size: 1rem;
+    line-height: 1.5;
+    margin-bottom: 20px;
+  }
+  .testimonial-author {
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: #b9aaff;
+  }
+
+  /* Contact Section */
+  section.contact {
+    background: #1a1a2e;
+    padding: 60px 24px 80px;
+    border-radius: 28px;
+    box-shadow: 0 0 40px rgba(124, 92, 255, 0.4);
+    max-width: 700px;
+    margin: 0 auto 60px;
+  }
+  section.contact h2 {
+    text-align: center;
+    font-weight: 900;
+    font-size: 2.6rem;
+    color: #7c5cff;
+    margin-bottom: 48px;
+  }
+  form.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  label {
+    font-weight: 600;
+    font-size: 1rem;
+    color: #b9aaff;
+  }
+  input[type="text"],
+  input[type="email"],
+  textarea {
+    background: #22223b;
+    border: 1.5px solid #5d39ff;
+    border-radius: 16px;
+    padding: 14px 18px;
+    font-size: 1rem;
+    color: #e6e6fa;
+    resize: vertical;
+    transition: border-color 0.3s ease;
+  }
+  input[type="text"]:focus,
+  input[type="email"]:focus,
+  textarea:focus {
+    border-color: #7c5cff;
+    outline: none;
+  }
+  textarea {
+    min-height: 120px;
+  }
+  button.submit-btn {
+    margin-top: 12px;
+    background: linear-gradient(180deg, #7c5cff, #5d39ff);
+    border: none;
+    border-radius: 30px;
+    padding: 16px 48px;
+    font-weight: 700;
+    font-size: 1.2rem;
+    color: white;
+    cursor: pointer;
+    box-shadow: 0 0 25px rgba(124, 92, 255, 0.8), 0 14px 40px rgba(124, 92, 255, 0.4);
+    transition: background 0.3s ease, transform 0.3s ease;
+    align-self: center;
+  }
+  button.submit-btn:hover,
+  button.submit-btn:focus {
+    background: linear-gradient(180deg, #5d39ff, #7c5cff);
+    outline: none;
+    transform: scale(1.05);
+  }
+
+  /* Responsive tweaks */
+  @media (max-width: 480px) {
+    header {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 16px;
+    }
+    .back-btn {
+      width: 100%;
+      text-align: center;
+    }
+    .toggle-btn {
+      width: 100%;
+    }
+  }
+</style>
+</head>
+<body>
+  <div id="particles-js" aria-hidden="true"></div>
+
+  <div class="container" role="main" aria-label="Playables gallery and content">
+    <header>
+      <h1>🕹️ Services: Playables for Clients</h1>
+      <a href="index.html" class="back-btn" aria-label="Back to home page">← Back to Home</a>
+    </header>
+
+    <section aria-label="Playable games gallery">
+      <p style="font-size:1.1rem; color:#cfcfff; margin-bottom: 32px;">
+        Explore a selection of interactive playables <strong>developed as services for our company clients</strong>. These demos showcase our expertise in building high-quality, engaging playables for publishers and studios worldwide.
+      </p>
+      <div class="gallery" id="gallery" tabindex="0"></div>
+      <div class="btn-wrapper">
+        <button id="toggleGalleryBtn" class="toggle-btn" aria-expanded="false" aria-controls="gallery">Show All Playables</button>
+      </div>
+    </section>
+
+    <section class="testimonials" aria-label="Client testimonials">
+      <h2>Trusted by Leading Companies</h2>
+      <div class="testimonial-list">
+        <article class="testimonial-card" tabindex="0">
+          <p class="testimonial-text">"Professional, fast, and always delivers high-performing playables for our campaigns. Highly recommended!"</p>
+          <p class="testimonial-author">— TapNation</p>
+        </article>
+        <article class="testimonial-card" tabindex="0">
+          <p class="testimonial-text">"Their playables have driven engagement and great results for our launches. Excellent communication throughout."</p>
+          <p class="testimonial-author">— Homa Games</p>
+        </article>
+        <article class="testimonial-card" tabindex="0">
+          <p class="testimonial-text">"We value the creativity and reliability Ukhti Games brings to every playable project."</p>
+          <p class="testimonial-author">— KobStudio</p>
+        </article>
+        <article class="testimonial-card" tabindex="0">
+          <p class="testimonial-text">"The playables are always polished and optimized for performance. A pleasure to work with!"</p>
+          <p class="testimonial-author">— FumbGames</p>
+        </article>
+        <article class="testimonial-card" tabindex="0">
+          <p class="testimonial-text">"Great partner for fast, quality playable production. Our clients love the results!"</p>
+          <p class="testimonial-author">— Ozi Games</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="contact-info" aria-label="Contact information">
+      <p style="text-align:center; font-size:1.1rem; color:#cfcfff; margin-top:40px;">
+        For inquiries or to request playable services, contact us at: 
+        <a href="mailto:contact@ukhti.org" style="color:#7c5cff; font-weight:600;">contact@ukhti.org</a>
+      </p>
+    </section>
+
+    <section id="privacy-policy" aria-label="Privacy Policy" class="contact">
+      <h2>Privacy Policy</h2>
+      <p>
+        At Ukhti Games, we respect your privacy and are committed to protecting your personal information. This Privacy Policy outlines how we collect, use, and share data when you interact with our hybrid casual games and our website.
+      </p>
+      <h3>Information We Collect</h3>
+      <ul>
+        <li>Device Information: Device type, OS, IP address, and unique identifiers.</li>
+        <li>Usage Data: Game sessions, levels played, scores, and interactions.</li>
+        <li>Cookies and Tracking: We use cookies to improve user experience and analyze performance.</li>
+      </ul>
+      <h3>How We Use Information</h3>
+      <ul>
+        <li>To provide and improve our games and services.</li>
+        <li>To personalize content and in-game offers.</li>
+        <li>To analyze usage trends and enhance game performance.</li>
+        <li>To communicate important updates or support messages.</li>
+      </ul>
+      <h3>Data Sharing</h3>
+      <p>
+        We do not sell your personal information. We may share anonymized, aggregated data with partners and analytics providers to improve gameplay and marketing efforts.
+      </p>
+      <h3>Third-Party Services</h3>
+      <p>
+        Our games may include third-party SDKs for ads and analytics. These providers have their own privacy policies and are responsible for the data they collect.
+      </p>
+      <h3>Children's Privacy</h3>
+      <p>
+        Our games are not intended for children under 13. We do not knowingly collect personal information from children.
+      </p>
+      <h3>Contact Us</h3>
+      <p>
+        If you have questions about this Privacy Policy, please contact us at 
+        <a href="mailto:contact@ukhti.org" style="color:#7c5cff; font-weight:600;">contact@ukhti.org</a>.
+      </p>
+    </section>
+  </div>
+
+  <!-- Modal for playable -->
+  <div id="playableModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" aria-describedby="modalDesc">
+    <div class="modal-content">
+      <button id="closeModal" class="modal-close" aria-label="Close playable modal">✕</button>
+      <iframe id="playableFrame" class="playable-frame" src="" sandbox="allow-scripts allow-forms allow-pointer-lock allow-same-origin allow-popups" title="Playable game"></iframe>
+    </div>
+  </div>
+
+  <!-- Particles.js library -->
+  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+
+  <script>
+    // Initialize particles background
+    particlesJS('particles-js', {
+      "particles": {
+        "number": {
+          "value": 80,
+          "density": {
+            "enable": true,
+            "value_area": 800
+          }
+        },
+        "color": {
+          "value": "#7c5cff"
+        },
+        "shape": {
+          "type": "circle"
+        },
+        "opacity": {
+          "value": 0.25,
+          "random": true,
+          "anim": {
+            "enable": false
+          }
+        },
+        "size": {
+          "value": 3,
+          "random": true,
+          "anim": {
+            "enable": false
+          }
+        },
+        "line_linked": {
+          "enable": true,
+          "distance": 140,
+          "color": "#7c5cff",
+          "opacity": 0.15,
+          "width": 1
+        },
+        "move": {
+          "enable": true,
+          "speed": 1.2,
+          "direction": "none",
+          "random": true,
+          "straight": false,
+          "out_mode": "out",
+          "bounce": false
+        }
+      },
+      "interactivity": {
+        "detect_on": "canvas",
+        "events": {
+          "onhover": {
+            "enable": true,
+            "mode": "grab"
+          },
+          "onclick": {
+            "enable": true,
+            "mode": "push"
+          },
+          "resize": true
+        },
+        "modes": {
+          "grab": {
+            "distance": 140,
+            "line_linked": {
+              "opacity": 0.3
+            }
+          },
+          "push": {
+            "particles_nb": 4
+          }
+        }
+      },
+      "retina_detect": true
+    });
+
+    // Playables data
+    const playablesData = [
+      { title: "Sniper Hunting - Made with Cocos", thumb: "images/20.webp", src: "playables/SniperHunting/index.html", note: "SniperHunting - HypeGames" },
+      { title: "Block Blast", thumb: "images/19.png", src: "playables/BlockBlast/index2.html", note: "Bitcoin BlockBlast - Fumb Games" },
+      { title: "Cat Hide and Seek", thumb: "images/14.png", src: "playables/Cat/index.html", note: "Cat Hide and Seek - OZI Games" },
+      { title: "Ball Challenge", thumb: "images/17.png", src: "playables/BallBounce/index.html", note: "Ball Bounce And Merge - Moone" },
+      { title: "Angry Mining Concept", thumb: "images/16.png", src: "playables/kitchen/index.html", note: "Idle Mine - Fumb Games" },
+      { title: "Crystal Craven", thumb: "images/4.png", src: "playables/CrystalCraven/index.html", note: "Idle Mine - Fumb Games" },
+      { title: "Piggy Tetris", thumb: "images/1.png", src: "playables/Piggy/index.html", note: "Idle Bitcoin Mine - FumbGames" },
+      { title: "Hero Making Tycoon", thumb: "images/10.png", src: "playables/HMT/index.html", note: "Hero Making Tycoon - TapNation" },
+      { title: "Piggy Collect", thumb: "images/5.png", src: "playables/PiggyCollect/index.html", note: "Bitcoin Miner - Fumb Games" },
+      { title: "Doll Dress Up", thumb: "images/8.png", src: "playables/DDU/index.html", note: "Doll Dress Up - TapNation" },
+      { title: "Hide And Seek", thumb: "images/11.png", src: "playables/HideSeek/index.html", note: "Hide and Seek - Ozi Games" },
+      { title: "Pocket Monster Rush", thumb: "images/13.png", src: "playables/PMR/index.html", note: "Pocket Monster Rush - Tapnation" },
+      { title: "Robot Rat Killer", thumb: "images/7.png", src: "playables/RobotRat/index.html", note: "Robot Rat Killer - TapNation" },
+      { title: "Guess Their Answer", thumb: "images/9.png", src: "playables/GTA/index.html", note: "Guess Their Answer - TapNation" },
+      { title: "Hero Making Tycoon Dressing", thumb: "images/12.png", src: "playables/HMT2/index.html", note: "Hero Making Tycoon - Tapnation" }
+    ];
+
+    const galleryEl = document.getElementById('gallery');
+    const toggleBtn = document.getElementById('toggleGalleryBtn');
+    const modal = document.getElementById('playableModal');
+    const modalFrame = document.getElementById('playableFrame');
+    const closeModalBtn = document.getElementById('closeModal');
+
+    const INITIAL_VISIBLE_COUNT = 6;
+    let showingAll = false;
+
+    // Create card HTML string
+    function createCard(item, index) {
+      return `
+        <article class="card" tabindex="0" data-index="${index}" aria-label="Playable game: ${item.title}">
+          <div class="thumb" aria-hidden="true">
+            <img src="${item.thumb}" alt="Thumbnail for ${item.title}" loading="lazy" />
+            <div class="play-overlay" aria-hidden="true">
+              <button class="play-btn" type="button" aria-label="Play ${item.title}">Play</button>
+            </div>
+          </div>
+          <div class="card-content">
+            <h3 class="card-title">${item.title}</h3>
+            <p class="card-note">${item.note || ''}</p>
+          </div>
+        </article>
+      `;
+    }
+
+    function renderGallery() {
+      let itemsToShow = showingAll ? playablesData.length : INITIAL_VISIBLE_COUNT;
+      galleryEl.innerHTML = playablesData.map((item, idx) => {
+        if (idx < itemsToShow) {
+          return createCard(item, idx);
+        }
+        return '';
+      }).join('');
+      toggleBtn.textContent = showingAll ? 'Collapse' : 'Show All Playables';
+      toggleBtn.setAttribute('aria-expanded', showingAll.toString());
+    }
+
+    // Open modal with playable iframe
+    function openModal(index) {
+      const playable = playablesData[index];
+      if (!playable) return;
+      modalFrame.src = playable.src;
+      modal.classList.add('active');
+      modal.focus();
+      // Trap focus inside modal
+      trapFocus(modal);
+    }
+
+    // Close modal and reset iframe
+    function closeModal() {
+      modal.classList.remove('active');
+      modalFrame.src = '';
+      releaseFocusTrap();
+    }
+
+    // Event delegation for gallery clicks
+    galleryEl.addEventListener('click', (e) => {
+      const card = e.target.closest('.card');
+      if (!card) return;
+      const index = Number(card.dataset.index);
+      if (isNaN(index)) return;
+      openModal(index);
+    });
+
+    // Keyboard accessibility for cards: Enter or Space opens modal
+    galleryEl.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        const card = e.target.closest('.card');
+        if (!card) return;
+        e.preventDefault();
+        const index = Number(card.dataset.index);
+        if (isNaN(index)) return;
+        openModal(index);
+      }
+    });
+
+    // Close modal button
+    closeModalBtn.addEventListener('click', closeModal);
+
+    // Close modal on clicking outside modal-content
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) {
+        closeModal();
+      }
+    });
+
+    // Close modal on Escape key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && modal.classList.contains('active')) {
+        closeModal();
+      }
+    });
+
+    // Toggle gallery show all / collapse
+    toggleBtn.addEventListener('click', () => {
+      showingAll = !showingAll;
+      renderGallery();
+      // Scroll smoothly to gallery top when collapsing
+      if (!showingAll) {
+        galleryEl.scrollIntoView({ behavior: 'smooth' });
+      }
+    });
+
+    // Focus trap for modal accessibility
+    let lastFocusedElement = null;
+    function trapFocus(element) {
+      lastFocusedElement = document.activeElement;
+      const focusableElements = element.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+      if (focusableElements.length === 0) return;
+      const firstFocusable = focusableElements[0];
+      const lastFocusable = focusableElements[focusableElements.length - 1];
+      element.addEventListener('keydown', trapHandler);
+      firstFocusable.focus();
+
+      function trapHandler(e) {
+        if (e.key !== 'Tab') return;
+        if (e.shiftKey) { // Shift + Tab
+          if (document.activeElement === firstFocusable) {
+            e.preventDefault();
+            lastFocusable.focus();
+          }
+        } else { // Tab
+          if (document.activeElement === lastFocusable) {
+            e.preventDefault();
+            firstFocusable.focus();
+          }
+        }
+      }
+      trapFocus._handler = trapHandler;
+    }
+    function releaseFocusTrap() {
+      if (!modal) return;
+      modal.removeEventListener('keydown', trapFocus._handler);
+      if (lastFocusedElement) lastFocusedElement.focus();
+    }
+
+
+    // Initial render
+    renderGallery();
+  </script>
+</body>
+</html>

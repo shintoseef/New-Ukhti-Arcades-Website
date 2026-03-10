@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ukhti Arcades | Hybrid Casual Studio</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700;900&display=swap" rel="stylesheet">
+
+<style>
+:root{
+--bg:#070709;
+--neon:#00ffcc;
+--purple:#b700ff;
+--text:#f4f4f5;
+--muted:#888891;
+}
+
+body{
+margin:0;
+font-family:'Poppins',sans-serif;
+background:var(--bg);
+color:var(--text);
+overflow-x:hidden;
+}
+#particles{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+z-index:-2;
+pointer-events:none;
+}
+
+/* animated gradient background */
+body::before{
+content:"";
+position:fixed;
+width:200%;
+height:200%;
+background:radial-gradient(circle at 20% 30%, #10101a, transparent 40%),
+radial-gradient(circle at 80% 70%, #1a101a, transparent 40%),
+radial-gradient(circle at 50% 50%, #0f0f14, transparent 60%);
+animation:moveBG 18s infinite alternate ease-in-out;
+z-index:-1;
+}
+
+@keyframes moveBG{
+0%{transform:translate(0,0)}
+50%{transform:translate(-10%, -5%)}
+100%{transform:translate(10%,5%)}
+}
+
+nav{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:20px 5%;
+position:fixed;
+width:90%;
+top:0;
+backdrop-filter:blur(10px);
+background:rgba(0,0,0,0.4);
+border-bottom:1px solid rgba(255,255,255,0.05);
+z-index:100;
+}
+
+.logo{
+font-size:24px;
+font-weight:900;
+background:linear-gradient(90deg,var(--neon),var(--purple));
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+}
+
+.nav-links a{
+color:white;
+text-decoration:none;
+margin-left:30px;
+font-size:14px;
+}
+
+.nav-links{
+display:flex;
+align-items:center;
+}
+
+/* Cool rounded tab dropdown with animation */
+.dropdown{
+position:relative;
+margin-left:30px;
+}
+
+.dropdown > a{
+color:white;
+text-decoration:none;
+font-size:14px;
+cursor:pointer;
+padding:8px 16px;
+border-radius:12px;
+transition:background 0.3s ease, transform 0.3s ease;
+}
+
+.dropdown > a:hover{
+background:rgba(0,255,204,0.1);
+transform:scale(1.05);
+}
+
+.dropdown-content{
+position:absolute;
+top:50px;
+left:50%;
+transform:translateX(-50%) translateY(-20px);
+background:#111118;
+border:1px solid rgba(255,255,255,0.05);
+border-radius:12px;
+min-width:220px;
+opacity:0;
+visibility:hidden;
+display:flex;
+flex-direction:column;
+padding:10px 0;
+box-shadow:0 10px 30px rgba(0,0,0,0.5);
+transition:opacity 0.4s ease, transform 0.4s ease;
+z-index: 101;
+}
+
+.dropdown-content a{
+padding:10px 18px;
+margin:0;
+font-size:13px;
+color:var(--text);
+transition:background 0.3s ease;
+border-radius:10px;
+text-align: center;
+}
+
+.dropdown-content a:hover{
+background:rgba(0,255,204,0.2);
+}
+
+.dropdown.show .dropdown-content{
+opacity:1;
+visibility:visible;
+transform:translateX(-50%) translateY(0);
+}
+
+.contact-badge{
+border:1px solid var(--purple);
+padding:8px 16px;
+border-radius:20px;
+white-space: nowrap;
+}
+
+.hero{
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+text-align:center;
+padding-top:120px;
+position: relative;
+z-index: 10;
+}
+
+h1{
+font-size:3.5rem;
+margin-bottom:10px;
+background:linear-gradient(90deg,var(--neon),var(--purple));
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+padding: 0 15px;
+}
+
+.subtitle{
+color:var(--muted);
+max-width:600px;
+margin-bottom:40px;
+padding: 0 20px;
+}
+
+/* =========================================
+   SIDE-BY-SIDE ACTIVE PLAYERS
+========================================= */
+.active-players-row {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 60px; /* Space between the two players */
+  margin: 0 auto 30px auto;
+  max-width: 1200px;
+  width: 100%;
+  padding: 0 20px;
+  position: relative;
+  z-index: 20;
+}
+
+.player-column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 320px; /* Forces phone proportions */
+}
+
+.active-player-title {
+  text-align: center;
+  color: var(--neon);
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 15px;
+  text-shadow: 0 2px 5px rgba(0,0,0,0.5);
+  min-height: 24px; /* Keeps layout stable if title is short */
+}
+
+/* Interactive Player Container */
+.active-player-wrapper {
+  width: 100%;
+  aspect-ratio: 9/16;
+  border-radius: 20px;
+  overflow: hidden;
+  background: #000;
+  border: 2px solid rgba(124, 92, 255, 0.4);
+  box-shadow: 0 15px 40px rgba(0,0,0,0.6), 0 0 30px rgba(124, 92, 255, 0.2);
+  position: relative;
+}
+
+.active-player-wrapper iframe,
+.active-player-wrapper video {
+  width: 100%;
+  height: 100%;
+  border: none;
+  object-fit: cover;
+}
+
+
+/* =========================================
+   SCROLLING CAROUSELS SHOWCASE
+========================================= */
+.showcase {
+  padding: 40px 0;
+  background: radial-gradient(circle at center, rgba(17,17,24,0.5) 0%, transparent 80%);
+  position: relative;
+  z-index: 20; 
+}
+
+.carousel-title {
+  font-size: 2rem;
+  font-weight: 900;
+  margin-bottom: 10px;
+  background: linear-gradient(90deg,var(--text),var(--purple));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-align: center;
+}
+
+.carousel-description {
+  max-width: 700px;
+  margin: 0 auto 30px auto;
+  color: var(--muted);
+  font-size: 1rem;
+  text-align: center;
+  padding: 0 20px;
+}
+
+.carousel-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto 30px auto;
+  overflow: hidden;
+  padding: 20px 0;
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 15%, black 85%, transparent 100%);
+  mask-image: linear-gradient(to right, transparent 0%, black 15%, black 85%, transparent 100%);
+}
+
+.carousel-track {
+  display: flex;
+  gap: 30px; 
+  width: max-content;
+}
+
+.carousel-track:hover {
+  animation-play-state: paused;
+}
+
+.track-rtl { animation: scrollRTL 35s linear infinite; }
+.track-ltr { animation: scrollLTR 35s linear infinite; }
+
+@keyframes scrollRTL {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); } 
+}
+@keyframes scrollLTR {
+  0% { transform: translateX(-50%); }
+  100% { transform: translateX(0); }
+}
+
+/* Hover Items */
+.carousel-item {
+  position: relative;
+  width: 130px; 
+  height: 230px;
+  border-radius: 14px;
+  overflow: hidden;
+  cursor: pointer;
+  flex-shrink: 0;
+  border: 2px solid rgba(124, 92, 255, 0.2);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+  transition: all 0.3s ease;
+}
+
+.carousel-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: all 0.3s ease;
+  filter: brightness(0.6); 
+}
+
+.carousel-item:hover {
+  transform: translateY(-10px) scale(1.05);
+  border-color: var(--neon);
+  box-shadow: 0 15px 30px rgba(0,0,0,0.6), 0 0 25px rgba(0, 255, 204, 0.4);
+}
+
+.carousel-item:hover img {
+  filter: brightness(0.2);
+}
+
+.hover-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #fff;
+  font-weight: 900;
+  font-size: 1rem;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none; 
+  text-shadow: 0px 4px 10px rgba(0,0,0,0.8);
+  width: 90%;
+}
+
+.carousel-item:hover .hover-text {
+  opacity: 1;
+}
+
+/* View More Buttons */
+.view-more-container {
+  text-align: center;
+  margin-bottom: 80px;
+}
+
+.view-more-btn {
+  display: inline-block;
+  background: linear-gradient(180deg, var(--purple), #5d39ff);
+  color: white;
+  text-decoration: none;
+  padding: 12px 30px;
+  border-radius: 30px;
+  font-weight: 700;
+  font-size: 1.1rem;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 5px 15px rgba(124, 92, 255, 0.4);
+}
+
+.view-more-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 10px 25px rgba(124, 92, 255, 0.6);
+}
+
+.about{ padding:50px 10%; background:#111118; text-align:center; }
+.about-founder{ padding:50px 10%; text-align:center; max-width:900px; margin:auto; line-height:1.8; }
+.about-founder h2{ font-size:2.4rem; margin-bottom:30px; background:linear-gradient(90deg,var(--neon),var(--purple)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
+.about-founder p{ color:var(--muted); margin-bottom:20px; font-size:16px; }
+footer{ text-align:center; padding:40px; color:var(--muted); border-top:1px solid rgba(255,255,255,0.05); }
+
+/* =========================================
+   MOBILE RESPONSIVENESS
+========================================= */
+@media (max-width: 768px) {
+    nav { flex-direction: column; padding: 15px 5%; gap: 15px; }
+    .nav-links { flex-wrap: wrap; justify-content: center; gap: 15px; }
+    .nav-links a, .dropdown { margin-left: 0; }
+    .hero { padding-top: 160px; }
+    h1 { font-size: 2.2rem; }
+    .subtitle { font-size: 0.95rem; }
+    
+    /* Stacks the players vertically on phones */
+    .active-players-row {
+      flex-direction: column;
+      align-items: center;
+      gap: 50px;
+    }
+    
+    .about-founder h2 { font-size: 1.8rem; }
+    .about-founder, .about { padding: 60px 5%; }
+    .carousel-wrapper {
+        -webkit-mask-image: linear-gradient(to right, transparent 0%, black 25%, black 75%, transparent 100%);
+        mask-image: linear-gradient(to right, transparent 0%, black 25%, black 75%, transparent 100%);
+    }
+}
+</style>
+</head>
+
+<body>
+<canvas id="particles"></canvas>
+
+<nav>
+<div class="logo">🎮 Ukhti Arcades</div>
+<div class="nav-links">
+
+<a href="#about-founder">About</a>
+
+<div class="dropdown" onclick="toggleDropdown(this)">
+<a>Services ▾</a>
+<div class="dropdown-content">
+<a href="playables.html" onclick="clickAnimation(event)">Playable Ads Development</a>
+<a href="marketing-creatives.html" onclick="clickAnimation(event)">Marketing Creatives</a>
+</div>
+</div>
+
+<a href="privacy.html">Privacy Policy</a>
+
+<a href="mailto:contact@ukhti.org" class="contact-badge">contact@ukhti.org</a>
+
+</div>
+</nav>
+
+<section class="hero">
+  <h1>Crafting Hybrid Casual Experiences</h1>
+  <p class="subtitle">Satisfying mechanics. Bold visuals. Built for the global mobile market.</p>
+</section>
+
+<div class="active-players-row" id="active-players-display">
+  
+  <div class="player-column">
+    <div class="active-player-title" id="active-playable-title">Loading Playable...</div>
+    <div class="active-player-wrapper" id="playable-player-container">
+      <iframe id="active-playable-frame" src="" sandbox="allow-scripts allow-forms allow-pointer-lock allow-same-origin allow-popups" title="Playable game"></iframe>
+    </div>
+  </div>
+
+  <div class="player-column">
+    <div class="active-player-title" id="active-creative-title">Loading Video...</div>
+    <div class="active-player-wrapper" id="creative-player-container">
+      <video id="active-creative-video" controls autoplay muted loop playsinline></video>
+    </div>
+  </div>
+
+</div>
+
+<section class="showcase">
+
+  <h2 class="carousel-title">🕹️ Services: Playables for Clients</h2>
+  <p class="carousel-description">Explore interactive playables developed as services for our company clients. Click a thumbnail below to play instantly.</p>
+
+  <div class="carousel-wrapper">
+    <div class="carousel-track track-rtl" id="playablesTrack"></div>
+  </div>
+
+  <div class="view-more-container">
+    <a href="playables.html" class="view-more-btn">See All Playables Gallery</a>
+  </div>
+
+
+  <h2 class="carousel-title">🎬 Services: Video Creatives</h2>
+  <p class="carousel-description">Explore high-converting video creatives produced as services for our company clients. Click a thumbnail below to watch.</p>
+
+  <div class="carousel-wrapper">
+    <div class="carousel-track track-ltr" id="creativesTrack"></div>
+  </div>
+
+  <div class="view-more-container">
+    <a href="marketing-creatives.html" class="view-more-btn">See All Creatives Gallery</a>
+  </div>
+  
+</section>
+
+<section id="about-founder" class="about-founder">
+<h2>About the Founder</h2>
+<p>
+Ukhti Arcades was founded by <strong>Muhammad Touseef</strong>, a mobile game developer and playable ads specialist with several years of experience in the mobile gaming industry.
+</p>
+<p>
+Touseef has worked with leading companies in the mobile gaming ecosystem including projects connected with major publishers and studios. His work focuses on building high‑performance interactive playable ads, rapid gameplay prototypes, and scalable Unity gameplay systems.
+</p>
+<p>
+With experience across Unity, WebGL playables, Cocos, and advertising platforms, Ukhti Arcades focuses on creating engaging hybrid‑casual experiences designed for the global mobile market.
+</p>
+<p>
+This studio was created with the vision of building innovative mobile games while also delivering high‑quality playable advertising experiences for partners and publishers.
+</p>
+</section>
+
+<section class="about">
+<h2>About Ukhti Arcades</h2>
+<p>
+Ukhti Arcades builds mobile games and interactive playable ads focused on hybrid casual experiences. We specialize in rapid prototyping, Unity gameplay systems and high performance WebGL playables.
+</p>
+</section>
+
+<footer>
+<p>© 2026 Ukhti Arcades</p>
+<p>Mobile Games • Playable Ads • Hybrid Casual Development</p>
+</footer>
+
+<script>
+/* PARTICLE BACKGROUND */
+const canvas = document.getElementById("particles");
+const ctx = canvas.getContext("2d");
+let particles = [];
+function resize(){
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+}
+window.addEventListener("resize", resize);
+resize();
+for(let i=0;i<80;i++){
+particles.push({
+  x:Math.random()*canvas.width,
+  y:Math.random()*canvas.height,
+  r:(Math.random() + 0.5) * 4,
+  v:Math.random()*0.3+0.1
+});
+}
+function draw(){
+ctx.clearRect(0,0,canvas.width,canvas.height);
+particles.forEach(p=>{
+p.y -= p.v;
+if(p.y < 0) p.y = canvas.height;
+ctx.beginPath();
+ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+ctx.fillStyle="rgba(0,255,204,0.6)";
+ctx.fill();
+});
+requestAnimationFrame(draw);
+}
+draw();
+
+/* DROPDOWN LOGIC */
+function toggleDropdown(el){
+el.classList.toggle('show');
+}
+function clickAnimation(event){
+event.preventDefault();
+const link = event.currentTarget;
+link.style.transform='scale(0.95)';
+link.style.transition='transform 0.1s ease';
+setTimeout(()=>{
+link.style.transform='scale(1)';
+window.location.href=link.href;
+},100);
+}
+window.addEventListener('click', function(e){
+if(!e.target.closest('.dropdown')){
+document.querySelectorAll('.dropdown').forEach(d=>d.classList.remove('show'));
+}
+});
+
+/* =========================================
+   DATA AND INTERACTIVE PLAYER LOGIC
+========================================= */
+
+// Full Data Arrays
+const playablesData = [
+  { title: "Sniper Hunting - Made with Cocos", thumb: "images/20.webp", src: "playables/SniperHunting/index.html", note: "SniperHunting - HypeGames" },
+  { title: "Block Blast", thumb: "images/19.png", src: "playables/BlockBlast/index2.html", note: "Bitcoin BlockBlast - Fumb Games" },
+  { title: "Cat Hide and Seek", thumb: "images/14.png", src: "playables/Cat/index.html", note: "Cat Hide and Seek - OZI Games" },
+  { title: "Ball Challenge", thumb: "images/17.png", src: "playables/BallBounce/index.html", note: "Ball Bounce And Merge - Moone" },
+  { title: "Angry Mining Concept", thumb: "images/16.png", src: "playables/kitchen/index.html", note: "Idle Mine - Fumb Games" },
+  { title: "Crystal Craven", thumb: "images/4.png", src: "playables/CrystalCraven/index.html", note: "Idle Mine - Fumb Games" },
+  { title: "Piggy Tetris", thumb: "images/1.png", src: "playables/Piggy/index.html", note: "Idle Bitcoin Mine - FumbGames" },
+  { title: "Hero Making Tycoon", thumb: "images/10.png", src: "playables/HMT/index.html", note: "Hero Making Tycoon - TapNation" },
+  { title: "Piggy Collect", thumb: "images/5.png", src: "playables/PiggyCollect/index.html", note: "Bitcoin Miner - Fumb Games" },
+  { title: "Doll Dress Up", thumb: "images/8.png", src: "playables/DDU/index.html", note: "Doll Dress Up - TapNation" },
+  { title: "Hide And Seek", thumb: "images/11.png", src: "playables/HideSeek/index.html", note: "Hide and Seek - Ozi Games" },
+  { title: "Pocket Monster Rush", thumb: "images/13.png", src: "playables/PMR/index.html", note: "Pocket Monster Rush - Tapnation" },
+  { title: "Robot Rat Killer", thumb: "images/7.png", src: "playables/RobotRat/index.html", note: "Robot Rat Killer - TapNation" },
+  { title: "Guess Their Answer", thumb: "images/9.png", src: "playables/GTA/index.html", note: "Guess Their Answer - TapNation" },
+  { title: "Hero Making Tycoon Dressing", thumb: "images/12.png", src: "playables/HMT2/index.html", note: "Hero Making Tycoon - Tapnation" }
+];
+
+const creativesData = [
+   { title: 'Idle Clicker - Custom', thumb: 'video-thumbnails/41.png', video: 'creatives/42.mp4', note: 'Idle Mine - FumbGames' }, 
+   { title: 'Puzzle - Custom', thumb: 'video-thumbnails/39.png', video: 'creatives/40.mp4', note: 'Blocks of Bitcoin-FumbGames' }, 
+   { title: 'Puzzle - Custom', thumb: 'video-thumbnails/40.png', video: 'creatives/41.mov', note: 'Blocks of Bitcoin-FumbGames' }, 
+   { title: 'Idle - CustomGamePlay', thumb: 'video-thumbnails/38.png', video: 'creatives/39.mp4', note: 'IdleMine-FumbGames' },
+   { title: 'Simulation - CustomGamePlay', thumb: 'video-thumbnails/1.png', video: 'creatives/1.mp4', note: 'My Laundary Simulator - Ozi Games' },
+   { title: 'HCG - CustomGamePlay', thumb: 'video-thumbnails/2.png', video: 'creatives/2.mp4', note: 'Idle Mine Craft - TapNation' },
+   { title: 'Casual - Custom Gameplay', thumb: 'video-thumbnails/3.png', video: 'creatives/9.mp4', note: 'Hero Making Tycoon -TapNation' },
+   { title: 'HCG - CustomGamePlay', thumb: 'video-thumbnails/4.png', video: 'creatives/4.mp4', note: 'Parking Jam - TapNation' },
+   { title: 'HCG - knor Rebranding', thumb: 'video-thumbnails/5.png', video: 'creatives/5.mp4', note: 'Pocket Monster Rush - TapNation' },
+   { title: 'HCG - Custom Gameplay', thumb: 'video-thumbnails/6.png', video: 'creatives/3.mp4', note: 'Giant Rush - TapNation' },
+   { title: 'HCG - CustomGameplay', thumb: 'video-thumbnails/7.png', video: 'creatives/6.mp4', note: 'Dinosaur Evolution 3d - Ozi Games' },
+   { title: 'HCG - CustomGamePlay', thumb: 'video-thumbnails/8.png', video: 'creatives/7.mp4', note: 'Guess Thier Answer - TapNation' },
+   { title: 'Simulation - Custom Gameplay', thumb: 'video-thumbnails/9.png', video: 'creatives/8.mp4', note: 'Flying Horse3d - OziGames' },
+   { title: 'HCG - GamplayAlter', thumb: 'video-thumbnails/10.png', video: 'creatives/10.mp4', note: 'GiantRush - TapNation' },
+   { title: 'Casual - GamplayAlter', thumb: 'video-thumbnails/11.png', video: 'creatives/14.mp4', note: 'Hero Adventure - TapNation' },
+   { title: 'HCG - Custom Gameplay', thumb: 'video-thumbnails/12.png', video: 'creatives/12.mp4', note: 'Parking Jam 3d - TapNation' },
+   { title: 'HCG - GamplayAlter', thumb: 'video-thumbnails/13.png', video: 'creatives/13.mp4', note: 'Hide and Seek - Ozi Games' },
+   { title: 'Simulation - GamplayAlter', thumb: 'video-thumbnails/14.png', video: 'creatives/15.mp4', note: 'Gym Simulator 3d - OZi Games' },
+   { title: 'HCG - Custom Gameplay', thumb: 'video-thumbnails/15.png', video: 'creatives/16.mp4', note: 'Spider Evolution - Ozi Games' },
+   { title: 'HCG - Custom Gameplay', thumb: 'video-thumbnails/16.png', video: 'creatives/17.mp4', note: 'Parking Inc - Voodoo test' },
+   { title: 'HCG - Custom Gameplay', thumb: 'video-thumbnails/17.png', video: 'creatives/18.mp4', note: 'Parking Inc - Voodoo test' },
+   { title: 'HCG - Custom Gameplay', thumb: 'video-thumbnails/18.png', video: 'creatives/19.mp4', note: 'Pocket Monster Rush - TapNation' },
+   { title: 'HCG - Custom Gameplay', thumb: 'video-thumbnails/19.png', video: 'creatives/20.mp4', note: 'Mine Craft idle - TapNation' }
+];
+
+// Set Default First Items on Page Load
+window.addEventListener('DOMContentLoaded', () => {
+    if(playablesData.length > 0) loadPlayable(playablesData[0], false);
+    if(creativesData.length > 0) loadCreative(creativesData[0], false);
+});
+
+// Function to Load a Playable into the iFrame
+function loadPlayable(dataObj, scroll = true) {
+    const frame = document.getElementById('active-playable-frame');
+    const title = document.getElementById('active-playable-title');
+    
+    frame.src = dataObj.src;
+    title.innerText = dataObj.title;
+
+    if (scroll) {
+        // Scroll up to the row showing both players
+        document.getElementById('active-players-display').scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+}
+
+// Function to Load a Creative into the Video Player
+function loadCreative(dataObj, scroll = true) {
+    const video = document.getElementById('active-creative-video');
+    const title = document.getElementById('active-creative-title');
+    
+    video.src = dataObj.video;
+    title.innerText = dataObj.title;
+    video.muted = false; // ensure unmuted
+    video.autoplay = true;
+    video.playsInline = true;
+    video.loop = true;
+
+    // Try to play unmuted; fallback to muted if blocked
+    video.play().catch(() => {
+        console.warn('Autoplay blocked by browser. Muting video to allow autoplay.');
+        video.muted = true; 
+        video.play();
+    });
+
+    if (scroll) {
+        document.getElementById('active-players-display').scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+}
+
+// Build the Infinite Carousels from Objects
+function buildDynamicCarousel(trackId, dataArray, isPlayable, hoverTextLabel) {
+  const track = document.getElementById(trackId);
+  const infiniteArray = [...dataArray, ...dataArray]; // Clone for infinite loop
+
+  infiniteArray.forEach(item => {
+    const wrapper = document.createElement('div');
+    wrapper.className = 'carousel-item';
+    
+    wrapper.onclick = () => { 
+        if(isPlayable) {
+            loadPlayable(item, true);
+        } else {
+            loadCreative(item, true);
+        }
+    };
+
+    const img = document.createElement('img');
+    img.src = item.thumb;
+    img.alt = item.title;
+    img.loading = "lazy";
+
+    const textOverlay = document.createElement('div');
+    textOverlay.className = 'hover-text';
+    textOverlay.innerText = hoverTextLabel;
+
+    wrapper.appendChild(img);
+    wrapper.appendChild(textOverlay);
+    track.appendChild(wrapper);
+  });
+}
+
+// Initialize the tracks
+buildDynamicCarousel('playablesTrack', playablesData, true, 'Play Now!');
+buildDynamicCarousel('creativesTrack', creativesData, false, 'Play Creative');
+
+</script>
+</body>
+</html>
