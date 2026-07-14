@@ -1,0 +1,48 @@
+/* Single source of truth for the portfolio shown across the website. */
+window.playablesData = [
+  { title: "Idle Mine - Cocos", thumb: "images/21.png", src: "playables/IdleMine/Idle Mine Cocos.html", engine: "Cocos", note: "Idle Mine - Cocos" },
+  { title: "Sniper Hunting - Variant 2", thumb: "images/22.png", src: "playables/SniperHunting/index2.html", engine: "Cocos", note: "Sniper Hunting - HypeGames" },
+  { title: "Sniper Hunting - Made with Cocos", thumb: "images/20.webp", src: "playables/SniperHunting/index.html", engine: "Cocos", note: "SniperHunting - HypeGames" },
+  { title: "Bitcoin Empire - Infinite Click", thumb: "images/23.png", src: "playables/BE/BE_PB_GAMEPLAY_EARN_INFINITECLICKVIDEO_V10_INT_APPLOVIN.html", engine: "Luna", note: "Bitcoin Empire - Fumb Games" },
+  { title: "Bitcoin Empire - Typing Infinite", thumb: "images/24.png", src: "playables/BE/Be_Typing INfinie.html", engine: "Luna", note: "Bitcoin Empire - Fumb Games" },
+  { title: "Bitcoin Empire - Story", thumb: "images/25.png", src: "playables/BE/Story playable.html", engine: "Luna", note: "Bitcoin Empire - Fumb Games" },
+  { title: "Bitcoin Empire With Hook", thumb: "images/26.png", src: "playables/BE/BE_AI/index.html", engine: "Luna", note: "Bitcoin Empire - Fumb Games" },
+  { title: "Sniper Hunting - Variant 3", thumb: "images/20.webp", src: "playables/SniperHunting/index3.html", engine: "Cocos", note: "Sniper Hunting - HypeGames" },
+  { title: "Block Blast", thumb: "images/19.png", src: "playables/BlockBlast/index2.html", engine: "Luna", note: "Bitcoin BlockBlast - Fumb Games" },
+  { title: "Cat Hide and Seek", thumb: "images/14.png", src: "playables/Cat/index.html", engine: "Luna", note: "Cat Hide and Seek - OZI Games" },
+  { title: "Ball Challenge", thumb: "images/17.png", src: "playables/BallBounce/Index.html", engine: "Luna", note: "Ball Bounce And Merge - Moone" },
+  { title: "Angry Mining Concept", thumb: "images/16.png", src: "playables/kitchen/index.html", engine: "Luna", note: "Idle Mine - Fumb Games" },
+  { title: "Crystal Craven", thumb: "images/4.png", src: "playables/CrystalCraven/index.html", engine: "Luna", note: "Idle Mine - Fumb Games" },
+  { title: "Piggy Tetris", thumb: "images/1.png", src: "playables/Piggy/index.html", engine: "Luna", note: "Idle Bitcoin Mine - FumbGames" },
+  { title: "Hero Making Tycoon", thumb: "images/10.png", src: "playables/HMT/index.html", engine: "Luna", note: "Hero Making Tycoon - TapNation" },
+  { title: "Piggy Collect", thumb: "images/5.png", src: "playables/PiggyCollect/index.html", engine: "Luna", note: "Bitcoin Miner - Fumb Games" },
+  { title: "Doll Dress Up", thumb: "images/8.png", src: "playables/DDU/index.html", engine: "Unity", note: "Doll Dress Up - TapNation" },
+  { title: "Hide And Seek", thumb: "images/11.png", src: "playables/HideSeek/index.html", engine: "Luna", note: "Hide and Seek - Ozi Games" },
+  { title: "Pocket Monster Rush", thumb: "images/13.png", src: "playables/PMR/index.html", engine: "Unity", note: "Pocket Monster Rush - Tapnation" },
+  { title: "Robot Rat Killer", thumb: "images/7.png", src: "playables/RobotRat/index.html", engine: "Luna", note: "Robot Rat Killer - TapNation" },
+  { title: "Guess Their Answer", thumb: "images/9.png", src: "playables/GTA/index.html", engine: "Unity", note: "Guess Their Answer - TapNation" },
+  { title: "Hero Making Tycoon Dressing", thumb: "images/12.png", src: "playables/HMT2/index.html", engine: "Unity", note: "Hero Making Tycoon - Tapnation" }
+];
+
+window.creativesData = [
+  { title: "Idle Clicker - Custom", thumb: "video-thumbnails/41.png", video: "creatives/42.mp4", note: "Idle Mine - FumbGames" },
+  { title: "Puzzle - Custom", thumb: "video-thumbnails/39.png", video: "creatives/40.mp4", note: "Blocks of Bitcoin-FumbGames" },
+  { title: "Puzzle - Custom", thumb: "video-thumbnails/40.png", video: "creatives/41.mov", note: "Blocks of Bitcoin-FumbGames" },
+  { title: "Idle - CustomGamePlay", thumb: "video-thumbnails/38.png", video: "creatives/39.mp4", note: "IdleMine-FumbGames" },
+  { title: "Simulation - CustomGamePlay", thumb: "video-thumbnails/1.png", video: "creatives/1.mp4", note: "My Laundary Simulator - Ozi Games" },
+  { title: "HCG - CustomGamePlay", thumb: "video-thumbnails/2.png", video: "creatives/2.mp4", note: "Idle Mine Craft - TapNation" },
+  { title: "HCG - CustomGamePlay", thumb: "video-thumbnails/4.png", video: "creatives/4.mp4", note: "Parking Jam - TapNation" },
+  { title: "HCG - Custom Gameplay", thumb: "video-thumbnails/6.png", video: "creatives/3.mp4", note: "Giant Rush - TapNation" },
+  { title: "HCG - Custom Gameplay", thumb: "video-thumbnails/25.png", video: "creatives/26.mp4", note: "Shoe Paint 3d - TapNation" },
+  { title: "HCG - Custom Gameplay", thumb: "video-thumbnails/26.png", video: "creatives/28.mp4", note: "Mine Craft - TapNation" },
+  { title: "HCG - Custom Gameplay", thumb: "video-thumbnails/27.png", video: "creatives/29.mp4", note: "Mine Craft - TapNation" },
+  { title: "HCG - Custom Gameplay", thumb: "video-thumbnails/28.png", video: "creatives/30.mp4", note: "Pocket Monster Rush- TapNation" },
+  { title: "HCG - Custom Gameplay", thumb: "video-thumbnails/29.png", video: "creatives/31.mp4", note: "Pocket Monster Rush - TapNation" },
+  { title: "HCG - Custom Gameplay", thumb: "video-thumbnails/30.png", video: "creatives/32.mp4", note: "Hero Adventure- TapNation" },
+  { title: "HCG - Custom Gameplay", thumb: "video-thumbnails/31.png", video: "creatives/33.mp4", note: "Wizard Universe - TapNation" },
+  { title: "HCG - Custom Gameplay", thumb: "video-thumbnails/32.png", video: "creatives/34.mp4", note: "CornHole - TapNation" },
+  { title: "HCG - Custom Gameplay", thumb: "video-thumbnails/33.png", video: "creatives/35.mp4", note: "Giant Rush - TapNation" },
+  { title: "Simulation - Custom Gameplay", thumb: "video-thumbnails/34.png", video: "creatives/36.mp4", note: "Army Train Simulator - Ozi Games" },
+  { title: "Custom Gameplay", thumb: "video-thumbnails/35.png", video: "creatives/37.mp4", note: "No Wifi Games - Ozi Games" },
+  { title: "Guess Thier Answer - Custom Gameplay", thumb: "video-thumbnails/36.png", video: "creatives/38.mp4", note: "Guess thier Answer TapNation" }
+];

@@ -6,6 +6,7 @@
 <title>Ukhti Arcades | Hybrid Casual Studio</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="site-theme.css">
 <meta name="google-site-verification" content="lcac1T0vHRlZeUkUJ98_sUiOnLSLWs3RXJynrnQVldI"/>
 
 <style>
@@ -512,6 +513,7 @@ Ukhti Arcades builds mobile games and interactive playable ads focused on hybrid
 <p>Mobile Games • Playable Ads • Hybrid Casual Development</p>
 </footer>
 
+<script src="content-data.js"></script>
 <script>
 /* PARTICLE BACKGROUND */
 const canvas = document.getElementById("particles");
@@ -570,49 +572,8 @@ document.querySelectorAll('.dropdown').forEach(d=>d.classList.remove('show'));
 ========================================= */
 
 // Full Data Arrays
-const playablesData = [
-  { title: "Sniper Hunting - Made with Cocos", thumb: "images/20.webp", src: "playables/SniperHunting/index.html", note: "SniperHunting - HypeGames" },
-  { title: "Block Blast", thumb: "images/19.png", src: "playables/BlockBlast/index2.html", note: "Bitcoin BlockBlast - Fumb Games" },
-  { title: "Cat Hide and Seek", thumb: "images/14.png", src: "playables/Cat/index.html", note: "Cat Hide and Seek - OZI Games" },
-  { title: "Ball Challenge", thumb: "images/17.png", src: "playables/BallBounce/index.html", note: "Ball Bounce And Merge - Moone" },
-  { title: "Angry Mining Concept", thumb: "images/16.png", src: "playables/kitchen/index.html", note: "Idle Mine - Fumb Games" },
-  { title: "Crystal Craven", thumb: "images/4.png", src: "playables/CrystalCraven/index.html", note: "Idle Mine - Fumb Games" },
-  { title: "Piggy Tetris", thumb: "images/1.png", src: "playables/Piggy/index.html", note: "Idle Bitcoin Mine - FumbGames" },
-  { title: "Hero Making Tycoon", thumb: "images/10.png", src: "playables/HMT/index.html", note: "Hero Making Tycoon - TapNation" },
-  { title: "Piggy Collect", thumb: "images/5.png", src: "playables/PiggyCollect/index.html", note: "Bitcoin Miner - Fumb Games" },
-  { title: "Doll Dress Up", thumb: "images/8.png", src: "playables/DDU/index.html", note: "Doll Dress Up - TapNation" },
-  { title: "Hide And Seek", thumb: "images/11.png", src: "playables/HideSeek/index.html", note: "Hide and Seek - Ozi Games" },
-  { title: "Pocket Monster Rush", thumb: "images/13.png", src: "playables/PMR/index.html", note: "Pocket Monster Rush - Tapnation" },
-  { title: "Robot Rat Killer", thumb: "images/7.png", src: "playables/RobotRat/index.html", note: "Robot Rat Killer - TapNation" },
-  { title: "Guess Their Answer", thumb: "images/9.png", src: "playables/GTA/index.html", note: "Guess Their Answer - TapNation" },
-  { title: "Hero Making Tycoon Dressing", thumb: "images/12.png", src: "playables/HMT2/index.html", note: "Hero Making Tycoon - Tapnation" }
-];
-
-const creativesData = [
-   { title: 'Idle Clicker - Custom', thumb: 'video-thumbnails/41.png', video: 'creatives/42.mp4', note: 'Idle Mine - FumbGames' }, 
-   { title: 'Puzzle - Custom', thumb: 'video-thumbnails/39.png', video: 'creatives/40.mp4', note: 'Blocks of Bitcoin-FumbGames' }, 
-   { title: 'Puzzle - Custom', thumb: 'video-thumbnails/40.png', video: 'creatives/41.mov', note: 'Blocks of Bitcoin-FumbGames' }, 
-   { title: 'Idle - CustomGamePlay', thumb: 'video-thumbnails/38.png', video: 'creatives/39.mp4', note: 'IdleMine-FumbGames' },
-   { title: 'Simulation - CustomGamePlay', thumb: 'video-thumbnails/1.png', video: 'creatives/1.mp4', note: 'My Laundary Simulator - Ozi Games' },
-   { title: 'HCG - CustomGamePlay', thumb: 'video-thumbnails/2.png', video: 'creatives/2.mp4', note: 'Idle Mine Craft - TapNation' },
-   { title: 'Casual - Custom Gameplay', thumb: 'video-thumbnails/3.png', video: 'creatives/9.mp4', note: 'Hero Making Tycoon -TapNation' },
-   { title: 'HCG - CustomGamePlay', thumb: 'video-thumbnails/4.png', video: 'creatives/4.mp4', note: 'Parking Jam - TapNation' },
-   { title: 'HCG - knor Rebranding', thumb: 'video-thumbnails/5.png', video: 'creatives/5.mp4', note: 'Pocket Monster Rush - TapNation' },
-   { title: 'HCG - Custom Gameplay', thumb: 'video-thumbnails/6.png', video: 'creatives/3.mp4', note: 'Giant Rush - TapNation' },
-   { title: 'HCG - CustomGameplay', thumb: 'video-thumbnails/7.png', video: 'creatives/6.mp4', note: 'Dinosaur Evolution 3d - Ozi Games' },
-   { title: 'HCG - CustomGamePlay', thumb: 'video-thumbnails/8.png', video: 'creatives/7.mp4', note: 'Guess Thier Answer - TapNation' },
-   { title: 'Simulation - Custom Gameplay', thumb: 'video-thumbnails/9.png', video: 'creatives/8.mp4', note: 'Flying Horse3d - OziGames' },
-   { title: 'HCG - GamplayAlter', thumb: 'video-thumbnails/10.png', video: 'creatives/10.mp4', note: 'GiantRush - TapNation' },
-   { title: 'Casual - GamplayAlter', thumb: 'video-thumbnails/11.png', video: 'creatives/14.mp4', note: 'Hero Adventure - TapNation' },
-   { title: 'HCG - Custom Gameplay', thumb: 'video-thumbnails/12.png', video: 'creatives/12.mp4', note: 'Parking Jam 3d - TapNation' },
-   { title: 'HCG - GamplayAlter', thumb: 'video-thumbnails/13.png', video: 'creatives/13.mp4', note: 'Hide and Seek - Ozi Games' },
-   { title: 'Simulation - GamplayAlter', thumb: 'video-thumbnails/14.png', video: 'creatives/15.mp4', note: 'Gym Simulator 3d - OZi Games' },
-   { title: 'HCG - Custom Gameplay', thumb: 'video-thumbnails/15.png', video: 'creatives/16.mp4', note: 'Spider Evolution - Ozi Games' },
-   { title: 'HCG - Custom Gameplay', thumb: 'video-thumbnails/16.png', video: 'creatives/17.mp4', note: 'Parking Inc - Voodoo test' },
-   { title: 'HCG - Custom Gameplay', thumb: 'video-thumbnails/17.png', video: 'creatives/18.mp4', note: 'Parking Inc - Voodoo test' },
-   { title: 'HCG - Custom Gameplay', thumb: 'video-thumbnails/18.png', video: 'creatives/19.mp4', note: 'Pocket Monster Rush - TapNation' },
-   { title: 'HCG - Custom Gameplay', thumb: 'video-thumbnails/19.png', video: 'creatives/20.mp4', note: 'Mine Craft idle - TapNation' }
-];
+const playablesData = window.playablesData;
+const creativesData = window.creativesData;
 
 // Set Default First Items on Page Load
 window.addEventListener('DOMContentLoaded', () => {
@@ -620,11 +581,32 @@ window.addEventListener('DOMContentLoaded', () => {
     if(creativesData.length > 0) loadCreative(creativesData[0], false);
 });
 
+/* Keep page scrolling responsive while the cursor is over a playable iframe. */
+function enablePlayableScrollPassthrough(frame) {
+    try {
+        const playableWindow = frame.contentWindow;
+        if (!playableWindow || playableWindow.__ukhtiScrollPassthrough) return;
+
+        playableWindow.__ukhtiScrollPassthrough = true;
+        playableWindow.addEventListener('wheel', (event) => {
+            const unit = event.deltaMode === 1 ? 16 : event.deltaMode === 2 ? window.innerHeight : 1;
+            window.scrollBy({
+                top: event.deltaY * unit,
+                left: event.deltaX * unit,
+                behavior: 'auto'
+            });
+        }, { capture: true, passive: true });
+    } catch (error) {
+        console.warn('Playable scroll passthrough could not be enabled.', error);
+    }
+}
+
 // Function to Load a Playable into the iFrame
 function loadPlayable(dataObj, scroll = true) {
     const frame = document.getElementById('active-playable-frame');
     const title = document.getElementById('active-playable-title');
-    
+
+    frame.addEventListener('load', () => enablePlayableScrollPassthrough(frame), { once: true });
     frame.src = dataObj.src;
     title.innerText = dataObj.title;
 
@@ -680,11 +662,16 @@ function buildDynamicCarousel(trackId, dataArray, isPlayable, hoverTextLabel) {
     img.alt = item.title;
     img.loading = "lazy";
 
+    const engineBadge = document.createElement('span');
+    engineBadge.className = `engine-badge engine-${item.engine.toLowerCase()}`;
+    engineBadge.innerText = `Made with ${item.engine}`;
+
     const textOverlay = document.createElement('div');
     textOverlay.className = 'hover-text';
     textOverlay.innerText = hoverTextLabel;
 
     wrapper.appendChild(img);
+    wrapper.appendChild(engineBadge);
     wrapper.appendChild(textOverlay);
     track.appendChild(wrapper);
   });
@@ -695,5 +682,6 @@ buildDynamicCarousel('playablesTrack', playablesData, true, 'Play Now!');
 buildDynamicCarousel('creativesTrack', creativesData, false, 'Play Creative');
 
 </script>
+<script src="site-effects.js"></script>
 </body>
 </html>

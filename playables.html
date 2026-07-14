@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Ukhti Games Playables</title>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800;900&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="site-theme.css" />
 <style>
   /* Reset and base */
   *, *::before, *::after {
@@ -486,6 +487,7 @@
 
   <!-- Particles.js library -->
   <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+  <script src="content-data.js"></script>
 
   <script>
     // Initialize particles background
@@ -564,23 +566,7 @@
     });
 
     // Playables data
-    const playablesData = [
-      { title: "Sniper Hunting - Made with Cocos", thumb: "images/20.webp", src: "playables/SniperHunting/index.html", note: "SniperHunting - HypeGames" },
-      { title: "Block Blast", thumb: "images/19.png", src: "playables/BlockBlast/index2.html", note: "Bitcoin BlockBlast - Fumb Games" },
-      { title: "Cat Hide and Seek", thumb: "images/14.png", src: "playables/Cat/index.html", note: "Cat Hide and Seek - OZI Games" },
-      { title: "Ball Challenge", thumb: "images/17.png", src: "playables/BallBounce/index.html", note: "Ball Bounce And Merge - Moone" },
-      { title: "Angry Mining Concept", thumb: "images/16.png", src: "playables/kitchen/index.html", note: "Idle Mine - Fumb Games" },
-      { title: "Crystal Craven", thumb: "images/4.png", src: "playables/CrystalCraven/index.html", note: "Idle Mine - Fumb Games" },
-      { title: "Piggy Tetris", thumb: "images/1.png", src: "playables/Piggy/index.html", note: "Idle Bitcoin Mine - FumbGames" },
-      { title: "Hero Making Tycoon", thumb: "images/10.png", src: "playables/HMT/index.html", note: "Hero Making Tycoon - TapNation" },
-      { title: "Piggy Collect", thumb: "images/5.png", src: "playables/PiggyCollect/index.html", note: "Bitcoin Miner - Fumb Games" },
-      { title: "Doll Dress Up", thumb: "images/8.png", src: "playables/DDU/index.html", note: "Doll Dress Up - TapNation" },
-      { title: "Hide And Seek", thumb: "images/11.png", src: "playables/HideSeek/index.html", note: "Hide and Seek - Ozi Games" },
-      { title: "Pocket Monster Rush", thumb: "images/13.png", src: "playables/PMR/index.html", note: "Pocket Monster Rush - Tapnation" },
-      { title: "Robot Rat Killer", thumb: "images/7.png", src: "playables/RobotRat/index.html", note: "Robot Rat Killer - TapNation" },
-      { title: "Guess Their Answer", thumb: "images/9.png", src: "playables/GTA/index.html", note: "Guess Their Answer - TapNation" },
-      { title: "Hero Making Tycoon Dressing", thumb: "images/12.png", src: "playables/HMT2/index.html", note: "Hero Making Tycoon - Tapnation" }
-    ];
+    const playablesData = window.playablesData;
 
     const galleryEl = document.getElementById('gallery');
     const toggleBtn = document.getElementById('toggleGalleryBtn');
@@ -596,6 +582,7 @@
       return `
         <article class="card" tabindex="0" data-index="${index}" aria-label="Playable game: ${item.title}">
           <div class="thumb" aria-hidden="true">
+            <span class="engine-badge engine-${item.engine.toLowerCase()}">Made with ${item.engine}</span>
             <img src="${item.thumb}" alt="Thumbnail for ${item.title}" loading="lazy" />
             <div class="play-overlay" aria-hidden="true">
               <button class="play-btn" type="button" aria-label="Play ${item.title}">Play</button>
@@ -724,5 +711,6 @@
     // Initial render
     renderGallery();
   </script>
+  <script src="site-effects.js"></script>
 </body>
 </html>
