@@ -8,7 +8,7 @@ window.playablesData = [
   { title: "Bitcoin Empire - Story", thumb: "images/25.png", src: "playables/BE/Story playable.html", engine: "Luna", note: "Bitcoin Empire - Fumb Games" },
   { title: "Bitcoin Empire With Hook", thumb: "images/26.png", src: "playables/BE/BE_AI/index.html", engine: "Luna", note: "Bitcoin Empire - Fumb Games" },
   { title: "Sniper Hunting - Variant 3", thumb: "images/20.webp", src: "playables/SniperHunting/index3.html", engine: "Cocos", note: "Sniper Hunting - HypeGames" },
-  { title: "Block Blast", thumb: "images/19.png", src: "playables/BlockBlast/index2.html", engine: "Luna", note: "Bitcoin BlockBlast - Fumb Games" },
+  { title: "Block Blast", thumb: "images/19.png", src: "playables/BlockBlast/index.html", engine: "Luna", note: "Bitcoin BlockBlast - Fumb Games" },
   { title: "Cat Hide and Seek", thumb: "images/14.png", src: "playables/Cat/index.html", engine: "Luna", note: "Cat Hide and Seek - OZI Games" },
   { title: "Ball Challenge", thumb: "images/17.png", src: "playables/BallBounce/Index.html", engine: "Luna", note: "Ball Bounce And Merge - Moone" },
   { title: "Angry Mining Concept", thumb: "images/16.png", src: "playables/kitchen/index.html", engine: "Luna", note: "Idle Mine - Fumb Games" },
