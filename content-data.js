@@ -1,7 +1,7 @@
 /* Single source of truth for the portfolio shown across the website. */
 window.playablesData = [
-  { title: "Idle Mine - Cocos V2", thumb: "images/27.png", src: "playables/IdleMine/idleMineCocosV2.html", engine: "Cocos", note: "Idle Mine - Fumb Games" },
   { title: "Idle Mine - Cocos", thumb: "images/21.png", src: "playables/IdleMine/Idle Mine Cocos.html", engine: "Cocos", note: "Idle Mine - Cocos" },
+  { title: "Idle Mine - Cocos V2", thumb: "images/27.png", src: "playables/IdleMine/idleMineCocosV2.html", engine: "Cocos", note: "Idle Mine - Fumb Games" },
   { title: "Sniper Hunting - Variant 2", thumb: "images/22.png", src: "playables/SniperHunting/index2.html", engine: "Cocos", note: "Sniper Hunting - HypeGames" },
   { title: "Sniper Hunting - Made with Cocos", thumb: "images/20.webp", src: "playables/SniperHunting/index.html", engine: "Cocos", note: "SniperHunting - HypeGames" },
   { title: "Bitcoin Empire - Infinite Click", thumb: "images/23.png", src: "playables/BE/BE_PB_GAMEPLAY_EARN_INFINITECLICKVIDEO_V10_INT_APPLOVIN.html", engine: "Luna", note: "Bitcoin Empire - Fumb Games" },

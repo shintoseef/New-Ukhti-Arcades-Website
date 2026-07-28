@@ -138,37 +138,8 @@
   const finePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
   if (!finePointer || reduceMotion) return;
 
-  const bot = document.createElement('div');
-  bot.className = 'arcade-bot';
-  bot.setAttribute('aria-hidden', 'true');
-  bot.innerHTML = '<span class="sprite-halo"></span><span class="sprite-wing sprite-wing-left"></span><span class="sprite-wing sprite-wing-right"></span><span class="sprite-tail"></span><div class="arcade-bot-body"><span class="bot-eye"></span><span class="bot-eye"></span><span class="sprite-cheek sprite-cheek-left"></span><span class="sprite-cheek sprite-cheek-right"></span><span class="bot-mouth"></span></div><span class="bot-sleep">Z</span>';
-  document.body.appendChild(bot);
-
-  let pointerX = window.innerWidth * .8;
-  let pointerY = window.innerHeight * .3;
-  let botX = pointerX + 24;
-  let botY = pointerY + 24;
   let lastSpark = 0;
   let tiltedItem = null;
-  let moveTimer = 0;
-  let sleepTimer = 0;
-  let boostTimer = 0;
-
-  const wakeBot = () => {
-    bot.classList.remove('is-sleepy');
-    window.clearTimeout(sleepTimer);
-    sleepTimer = window.setTimeout(() => bot.classList.add('is-sleepy'), 3600);
-  };
-
-  const blink = () => {
-    if (!bot.classList.contains('is-sleepy')) {
-      bot.classList.add('is-blinking');
-      window.setTimeout(() => bot.classList.remove('is-blinking'), 130);
-    }
-    window.setTimeout(blink, 1800 + Math.random() * 2800);
-  };
-  window.setTimeout(blink, 1200);
-  wakeBot();
 
   const burstConfetti = (x, y) => {
     const colors = ['#00f5d4', '#8b5cf6', '#f43f9e', '#ffe66d', '#ffffff'];
@@ -188,30 +159,7 @@
     }
   };
 
-  const animateBot = () => {
-    botX += (pointerX + 24 - botX) * .12;
-    botY += (pointerY + 22 - botY) * .12;
-    const clampedX = Math.min(window.innerWidth - 88, Math.max(6, botX));
-    const clampedY = Math.min(window.innerHeight - 76, Math.max(6, botY));
-    bot.style.transform = `translate3d(${clampedX}px, ${clampedY}px, 0)`;
-    requestAnimationFrame(animateBot);
-  };
-  requestAnimationFrame(animateBot);
-
   document.addEventListener('pointermove', (event) => {
-    wakeBot();
-    pointerX = event.clientX;
-    pointerY = event.clientY;
-
-    bot.classList.add('is-moving');
-    window.clearTimeout(moveTimer);
-    moveTimer = window.setTimeout(() => bot.classList.remove('is-moving'), 170);
-
-    const lookX = Math.max(-2.5, Math.min(2.5, (pointerX - botX) / 45));
-    const lookY = Math.max(-2, Math.min(2, (pointerY - botY) / 45));
-    bot.style.setProperty('--look-x', `${lookX}px`);
-    bot.style.setProperty('--look-y', `${lookY}px`);
-
     const interactive = event.target.closest('.card, .carousel-item');
     if (tiltedItem && tiltedItem !== interactive) {
       tiltedItem.style.setProperty('--tilt-x', '0deg');
@@ -238,19 +186,7 @@
     spark.addEventListener('animationend', () => spark.remove(), { once: true });
   }, { passive: true });
 
-  window.addEventListener('scroll', () => {
-    wakeBot();
-    bot.classList.add('is-boosting');
-    window.clearTimeout(boostTimer);
-    boostTimer = window.setTimeout(() => bot.classList.remove('is-boosting'), 180);
-  }, { passive: true });
-
   document.addEventListener('pointerdown', (event) => {
-    wakeBot();
-    bot.classList.remove('is-excited');
-    void bot.offsetWidth;
-    bot.classList.add('is-excited');
     burstConfetti(event.clientX, event.clientY);
-    window.setTimeout(() => bot.classList.remove('is-excited'), 480);
   }, { passive: true });
 })();
