@@ -6,7 +6,7 @@
 <title>Ukhti Arcades | Hybrid Casual Studio</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="site-theme.css">
+<link rel="stylesheet" href="site-theme.css?v=20260807-2">
 <meta name="google-site-verification" content="lcac1T0vHRlZeUkUJ98_sUiOnLSLWs3RXJynrnQVldI"/>
 
 <style>
@@ -39,19 +39,11 @@ pointer-events:none;
 body::before{
 content:"";
 position:fixed;
-width:200%;
-height:200%;
+inset:-10%;
 background:radial-gradient(circle at 20% 30%, #10101a, transparent 40%),
 radial-gradient(circle at 80% 70%, #1a101a, transparent 40%),
 radial-gradient(circle at 50% 50%, #0f0f14, transparent 60%);
-animation:moveBG 18s infinite alternate ease-in-out;
 z-index:-1;
-}
-
-@keyframes moveBG{
-0%{transform:translate(0,0)}
-50%{transform:translate(-10%, -5%)}
-100%{transform:translate(10%,5%)}
 }
 
 nav{
@@ -62,8 +54,7 @@ padding:20px 5%;
 position:fixed;
 width:90%;
 top:0;
-backdrop-filter:blur(10px);
-background:rgba(0,0,0,0.4);
+background:rgba(7,7,12,0.9);
 border-bottom:1px solid rgba(255,255,255,0.05);
 z-index:100;
 }
@@ -230,10 +221,12 @@ padding: 0 20px;
 
 .active-player-wrapper iframe,
 .active-player-wrapper video {
+  display: block;
   width: 100%;
   height: 100%;
   border: none;
   object-fit: cover;
+  backface-visibility: hidden;
 }
 
 
@@ -281,6 +274,8 @@ padding: 0 20px;
   display: flex;
   gap: 30px; 
   width: max-content;
+  will-change: transform;
+  backface-visibility: hidden;
 }
 
 .carousel-track:hover {
@@ -291,12 +286,12 @@ padding: 0 20px;
 .track-ltr { animation: scrollLTR 35s linear infinite; }
 
 @keyframes scrollRTL {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); } 
+  0% { transform: translate3d(0, 0, 0); }
+  100% { transform: translate3d(-50%, 0, 0); }
 }
 @keyframes scrollLTR {
-  0% { transform: translateX(-50%); }
-  100% { transform: translateX(0); }
+  0% { transform: translate3d(-50%, 0, 0); }
+  100% { transform: translate3d(0, 0, 0); }
 }
 
 /* Hover Items */
@@ -310,14 +305,15 @@ padding: 0 20px;
   flex-shrink: 0;
   border: 2px solid rgba(124, 92, 255, 0.2);
   box-shadow: 0 10px 20px rgba(0,0,0,0.5);
-  transition: all 0.3s ease;
+  backface-visibility: hidden;
+  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .carousel-item img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: all 0.3s ease;
+  transition: filter 0.3s ease;
   filter: brightness(0.6); 
 }
 
@@ -589,13 +585,14 @@ function enablePlayableScrollPassthrough(frame) {
 
         playableWindow.__ukhtiScrollPassthrough = true;
         playableWindow.addEventListener('wheel', (event) => {
+            event.preventDefault();
             const unit = event.deltaMode === 1 ? 16 : event.deltaMode === 2 ? window.innerHeight : 1;
             window.scrollBy({
                 top: event.deltaY * unit,
                 left: event.deltaX * unit,
                 behavior: 'auto'
             });
-        }, { capture: true, passive: true });
+        }, { capture: true, passive: false });
     } catch (error) {
         console.warn('Playable scroll passthrough could not be enabled.', error);
     }
@@ -605,15 +602,29 @@ function enablePlayableScrollPassthrough(frame) {
 function loadPlayable(dataObj, scroll = true) {
     const frame = document.getElementById('active-playable-frame');
     const title = document.getElementById('active-playable-title');
+    const playerDisplay = document.getElementById('active-players-display');
+    const scrollBeforeLoad = window.scrollY;
 
-    frame.addEventListener('load', () => enablePlayableScrollPassthrough(frame), { once: true });
-    frame.src = dataObj.src;
-    title.innerText = dataObj.title;
+    frame.addEventListener('load', () => {
+        enablePlayableScrollPassthrough(frame);
+
+        // Some playables focus their canvas on startup, which can jump the parent page.
+        // Restore the intended position after the iframe finishes initializing.
+        requestAnimationFrame(() => {
+            if (scroll) {
+                playerDisplay.scrollIntoView({ behavior: 'auto', block: 'center' });
+            } else {
+                window.scrollTo({ top: scrollBeforeLoad, behavior: 'auto' });
+            }
+        });
+    }, { once: true });
 
     if (scroll) {
-        // Scroll up to the row showing both players
-        document.getElementById('active-players-display').scrollIntoView({ behavior: 'smooth', block: 'center' });
+        playerDisplay.scrollIntoView({ behavior: 'smooth', block: 'center' });
     }
+
+    frame.src = dataObj.src;
+    title.innerText = dataObj.title;
 }
 
 // Function to Load a Creative into the Video Player
@@ -662,16 +673,17 @@ function buildDynamicCarousel(trackId, dataArray, isPlayable, hoverTextLabel) {
     img.alt = item.title;
     img.loading = "lazy";
 
-    const engineBadge = document.createElement('span');
-    engineBadge.className = `engine-badge engine-${item.engine.toLowerCase()}`;
-    engineBadge.innerText = `Made with ${item.engine}`;
-
     const textOverlay = document.createElement('div');
     textOverlay.className = 'hover-text';
     textOverlay.innerText = hoverTextLabel;
 
     wrapper.appendChild(img);
-    wrapper.appendChild(engineBadge);
+    if (isPlayable && item.engine) {
+      const engineBadge = document.createElement('span');
+      engineBadge.className = `engine-badge engine-${item.engine.toLowerCase()}`;
+      engineBadge.innerText = `Made with ${item.engine}`;
+      wrapper.appendChild(engineBadge);
+    }
     wrapper.appendChild(textOverlay);
     track.appendChild(wrapper);
   });

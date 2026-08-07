@@ -62,9 +62,15 @@ section.testimonials h2, section.contact h2 {
   background: linear-gradient(120deg, rgba(255,255,255,.16), transparent 24%, transparent 72%, rgba(0,245,212,.12));
 }
 
-.active-player-wrapper { animation: float-player 6s ease-in-out infinite; }
-.player-column:nth-child(2) .active-player-wrapper { animation-delay: -3s; }
-@keyframes float-player { 50% { transform: translateY(-9px); box-shadow: 0 34px 85px rgba(0,0,0,.52), 0 0 40px rgba(139,92,246,.22); } }
+/* Never animate the transform of a live iframe/video. Moving composited media
+   layers causes intermittent flashing in several browsers while scrolling. */
+.active-player-wrapper {
+  animation: none;
+  isolation: isolate;
+  contain: paint;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
 
 .card { --tilt-x: 0deg; --tilt-y: 0deg; position: relative; border-radius: 24px; transform-style: preserve-3d; touch-action: pan-y; }
 .card:hover, .card:focus-visible {
