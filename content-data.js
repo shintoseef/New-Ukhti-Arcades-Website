@@ -1,5 +1,6 @@
 /* Single source of truth for the portfolio shown across the website. */
 window.playablesData = [
+  { title: "Sniper Playable test - Emma", thumb: "images/22.png", src: "playables/SniperEmma/index.html", engine: "Cocos", note: "Sniper playable test - Emma" },
   { title: "Idle Mine - Cocos", thumb: "images/21.png", src: "playables/IdleMine/Idle Mine Cocos.html", engine: "Cocos", note: "Idle Mine - Cocos" },
   { title: "Bitcoin Miner V2", thumb: "images/28.png", src: "playables/BitcoinMinerV2/index.html", engine: "Cocos", note: "Bitcoin Miner - Fumb Games" },
   { title: "Idle Mine - Cocos V2", thumb: "images/27.png", src: "playables/IdleMine/idleMineCocosV2.html", engine: "Cocos", note: "Idle Mine - Fumb Games" },
