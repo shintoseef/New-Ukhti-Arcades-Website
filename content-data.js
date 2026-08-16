@@ -3,6 +3,7 @@ window.playablesData = [
   { title: "Sniper Battle - HypeGames", thumb: "optimized-thumbnails/playables/sniper-hypegames.jpg", src: "playables/SniperEmma/index.html", engine: "Cocos", note: "Sniper Battle - HypeGames" },
   { title: "Idle Mine - Cocos", thumb: "optimized-thumbnails/playables/21.jpg", src: "playables/IdleMine/Idle Mine Cocos.html", engine: "Cocos", note: "Idle Mine - Cocos" },
   { title: "Bitcoin Miner V2", thumb: "optimized-thumbnails/playables/28.jpg", src: "playables/BitcoinMinerV2/index.html", engine: "Cocos", note: "Bitcoin Miner - Fumb Games" },
+  { title: "Wild Boar Variant Sniper Hunt", thumb: "optimized-thumbnails/playables/20.jpg", src: "playables/WildBoarSniperHunt/index.html", engine: "Cocos", note: "Wild Boar Variant Sniper Hunt" },
   { title: "Idle Mine - Cocos V2", thumb: "optimized-thumbnails/playables/27.jpg", src: "playables/IdleMine/idleMineCocosV2.html", engine: "Cocos", note: "Idle Mine - Fumb Games" },
   { title: "Bitcoin Empire - Infinite Click", thumb: "optimized-thumbnails/playables/23.jpg", src: "playables/BE/BE_PB_GAMEPLAY_EARN_INFINITECLICKVIDEO_V10_INT_APPLOVIN.html", engine: "Luna", note: "Bitcoin Empire - Fumb Games" },
   { title: "Bitcoin Empire - Typing Infinite", thumb: "optimized-thumbnails/playables/24.jpg", src: "playables/BE/Be_Typing INfinie.html", engine: "Luna", note: "Bitcoin Empire - Fumb Games" },
