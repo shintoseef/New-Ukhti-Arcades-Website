@@ -1,6 +1,6 @@
 /* Single source of truth for the portfolio shown across the website. */
 window.playablesData = [
-  { title: "Wild Boar Variant Sniper Hunt", thumb: "optimized-thumbnails/playables/wild-boar-sniper-hunt.jpg", src: "playables/WildBoarSniperHunt/index.html", engine: "Cocos", note: "Wild Boar Variant Sniper Hunt" },
+  { title: "Animal Hunt - Choose Weopen - HypeGames", thumb: "optimized-thumbnails/playables/wild-boar-sniper-hunt.jpg", src: "playables/WildBoarSniperHunt/index.html", engine: "Cocos", note: "Animal Hunt - Choose Weopen - HypeGames" },
   { title: "Sniper Battle - HypeGames", thumb: "optimized-thumbnails/playables/sniper-hypegames.jpg", src: "playables/SniperEmma/index.html", engine: "Cocos", note: "Sniper Battle - HypeGames" },
   { title: "Idle Mine - Cocos", thumb: "optimized-thumbnails/playables/21.jpg", src: "playables/IdleMine/Idle Mine Cocos.html", engine: "Cocos", note: "Idle Mine - Cocos" },
   { title: "Bitcoin Miner V2", thumb: "optimized-thumbnails/playables/28.jpg", src: "playables/BitcoinMinerV2/index.html", engine: "Cocos", note: "Bitcoin Miner - Fumb Games" },
