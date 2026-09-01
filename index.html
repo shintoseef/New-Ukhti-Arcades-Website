@@ -405,11 +405,10 @@ footer{ text-align:center; padding:40px; color:var(--muted); border-top:1px soli
     }
 }
 </style>
+<link rel="stylesheet" href="low-poly-theme.css?v=20260901-2">
 </head>
 
 <body>
-<canvas id="particles"></canvas>
-
 <nav>
 <div class="logo">🎮 Ukhti Arcades</div>
 <div class="nav-links">
@@ -431,28 +430,32 @@ footer{ text-align:center; padding:40px; color:var(--muted); border-top:1px soli
 </div>
 </nav>
 
-<section class="hero">
-  <h1>Crafting Hybrid Casual Experiences</h1>
-  <p class="subtitle">Satisfying mechanics. Bold visuals. Built for the global mobile market.</p>
+<section class="hero hero-layout">
+  <div class="hero-copy">
+    <h1><span>Playable Ads</span> That Feel Like Games</h1>
+    <p class="subtitle">We design lightweight, fun, and high-converting playable ads using <strong class="tech-cocos">Cocos</strong>, <strong class="tech-luna">Luna</strong> and <strong class="tech-unity">Unity</strong>.</p>
+    <a href="playables.html" class="view-more-btn hero-cta">🎮&nbsp; See Our Playables</a>
+  </div>
+
+  <div class="featured-showcase" id="active-players-display">
+    <div class="featured-details">
+      <span class="featured-label">★ Featured Playable</span>
+      <h2 class="active-player-title" id="active-playable-title">Loading Playable...</h2>
+      <p id="featured-description">A relaxing word + solitaire experience. Swipe cards, build words, and clear beautiful landscapes.</p>
+      <div class="featured-tags" aria-label="Featured playable categories">
+        <span>🎮&nbsp; Puzzle</span>
+        <span id="featured-engine" hidden>Cocos</span>
+      </div>
+    </div>
+    <div class="player-column">
+      <div class="active-player-wrapper" id="playable-player-container">
+        <iframe id="active-playable-frame" src="" sandbox="allow-scripts allow-forms allow-pointer-lock allow-same-origin allow-popups" title="Playable game"></iframe>
+      </div>
+    </div>
+  </div>
+
+  <div class="featured-quick-grid" id="featuredQuickGrid" aria-label="Highlighted playables"></div>
 </section>
-
-<div class="active-players-row" id="active-players-display">
-  
-  <div class="player-column">
-    <div class="active-player-title" id="active-playable-title">Loading Playable...</div>
-    <div class="active-player-wrapper" id="playable-player-container">
-      <iframe id="active-playable-frame" src="" sandbox="allow-scripts allow-forms allow-pointer-lock allow-same-origin allow-popups" title="Playable game"></iframe>
-    </div>
-  </div>
-
-  <div class="player-column">
-    <div class="active-player-title" id="active-creative-title">Loading Video...</div>
-    <div class="active-player-wrapper" id="creative-player-container">
-      <video id="active-creative-video" controls autoplay muted loop playsinline></video>
-    </div>
-  </div>
-
-</div>
 
 <section class="showcase">
 
@@ -473,6 +476,19 @@ footer{ text-align:center; padding:40px; color:var(--muted); border-top:1px soli
 
   <div class="carousel-wrapper">
     <div class="carousel-track track-ltr" id="creativesTrack"></div>
+  </div>
+
+  <div class="creative-preview" id="active-creative-display">
+    <div class="creative-preview-copy">
+      <span class="featured-label">▶ Selected Video Creative</span>
+      <h3 class="active-player-title" id="active-creative-title">Loading Video...</h3>
+      <p>Choose any creative above to preview the complete video.</p>
+    </div>
+    <div class="player-column">
+      <div class="active-player-wrapper" id="creative-player-container">
+        <video id="active-creative-video" controls preload="auto" muted loop playsinline></video>
+      </div>
+    </div>
   </div>
 
   <div class="view-more-container">
@@ -509,40 +525,8 @@ Ukhti Arcades builds mobile games and interactive playable ads focused on hybrid
 <p>Mobile Games • Playable Ads • Hybrid Casual Development</p>
 </footer>
 
-<script src="content-data.js"></script>
+<script src="content-data.js?v=20260901-2"></script>
 <script>
-/* PARTICLE BACKGROUND */
-const canvas = document.getElementById("particles");
-const ctx = canvas.getContext("2d");
-let particles = [];
-function resize(){
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
-}
-window.addEventListener("resize", resize);
-resize();
-for(let i=0;i<80;i++){
-particles.push({
-  x:Math.random()*canvas.width,
-  y:Math.random()*canvas.height,
-  r:(Math.random() + 0.5) * 4,
-  v:Math.random()*0.3+0.1
-});
-}
-function draw(){
-ctx.clearRect(0,0,canvas.width,canvas.height);
-particles.forEach(p=>{
-p.y -= p.v;
-if(p.y < 0) p.y = canvas.height;
-ctx.beginPath();
-ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
-ctx.fillStyle="rgba(0,255,204,0.6)";
-ctx.fill();
-});
-requestAnimationFrame(draw);
-}
-draw();
-
 /* DROPDOWN LOGIC */
 function toggleDropdown(el){
 el.classList.toggle('show');
@@ -574,8 +558,44 @@ const creativesData = window.creativesData;
 // Set Default First Items on Page Load
 window.addEventListener('DOMContentLoaded', () => {
     if(playablesData.length > 0) loadPlayable(playablesData[0], false);
-    if(creativesData.length > 0) loadCreative(creativesData[0], false);
+    if(creativesData.length > 0) prepareCreativePreview(creativesData[0]);
 });
+
+let creativeObserver = null;
+let creativeHasStarted = false;
+
+function prepareCreativePreview(dataObj) {
+    const video = document.getElementById('active-creative-video');
+    const title = document.getElementById('active-creative-title');
+    const preview = document.getElementById('active-creative-display');
+
+    title.innerText = dataObj.title;
+    video.preload = 'auto';
+    video.src = dataObj.video;
+    video.load();
+
+    const startWhenVisible = () => {
+        if (creativeHasStarted) return;
+        loadCreative(dataObj, false);
+    };
+
+    if ('IntersectionObserver' in window) {
+        creativeObserver = new IntersectionObserver((entries) => {
+            if (entries.some((entry) => entry.isIntersecting)) startWhenVisible();
+        }, { threshold: 0.2 });
+        creativeObserver.observe(preview);
+    } else {
+        const checkVisibility = () => {
+            const rect = preview.getBoundingClientRect();
+            if (rect.top < window.innerHeight && rect.bottom > 0) {
+                window.removeEventListener('scroll', checkVisibility);
+                startWhenVisible();
+            }
+        };
+        window.addEventListener('scroll', checkVisibility, { passive: true });
+        checkVisibility();
+    }
+}
 
 /* Keep page scrolling responsive while the cursor is over a playable iframe. */
 function enablePlayableScrollPassthrough(frame) {
@@ -602,6 +622,7 @@ function enablePlayableScrollPassthrough(frame) {
 function loadPlayable(dataObj, scroll = true) {
     const frame = document.getElementById('active-playable-frame');
     const title = document.getElementById('active-playable-title');
+    const description = document.getElementById('featured-description');
     const playerDisplay = document.getElementById('active-players-display');
     const scrollBeforeLoad = window.scrollY;
 
@@ -625,14 +646,33 @@ function loadPlayable(dataObj, scroll = true) {
 
     frame.src = dataObj.src;
     title.innerText = dataObj.title;
+    const descriptions = {
+      'World Solitaire': 'A relaxing word + solitaire experience. Swipe cards, build words, and clear beautiful landscapes.',
+      'Bitcoin Miner V1': 'Tap to mine Bitcoin and upgrade your gear. Simple, addictive, and rewarding.',
+      'Idle Mine - Cocos': 'Build your mine, hire workers, and earn rewards while you are away.',
+      'Sniper Battle - HypeGames': 'Aim, plan, and take the shot. Short rounds with a big impact.'
+    };
+    if (description) {
+      description.innerText = descriptions[dataObj.title] || `Play ${dataObj.title} directly in your browser and experience its interactive gameplay.`;
+    }
+    const engine = document.getElementById('featured-engine');
+    if (engine) engine.innerText = dataObj.engine || 'Playable';
 }
 
 // Function to Load a Creative into the Video Player
 function loadCreative(dataObj, scroll = true) {
     const video = document.getElementById('active-creative-video');
     const title = document.getElementById('active-creative-title');
+
+    creativeHasStarted = true;
+    if (creativeObserver) {
+        creativeObserver.disconnect();
+        creativeObserver = null;
+    }
     
-    video.src = dataObj.video;
+    if (video.getAttribute('src') !== dataObj.video) {
+        video.src = dataObj.video;
+    }
     title.innerText = dataObj.title;
     video.muted = false; // ensure unmuted
     video.autoplay = true;
@@ -647,14 +687,14 @@ function loadCreative(dataObj, scroll = true) {
     });
 
     if (scroll) {
-        document.getElementById('active-players-display').scrollIntoView({ behavior: 'smooth', block: 'center' });
+        document.getElementById('active-creative-display').scrollIntoView({ behavior: 'smooth', block: 'center' });
     }
 }
 
 // Build the Infinite Carousels from Objects
 function buildDynamicCarousel(trackId, dataArray, isPlayable, hoverTextLabel) {
   const track = document.getElementById(trackId);
-  const infiniteArray = [...dataArray, ...dataArray]; // Clone for infinite loop
+  const infiniteArray = dataArray; // One organized, lightweight scrollable row
 
   infiniteArray.forEach(item => {
     const wrapper = document.createElement('div');
@@ -693,7 +733,34 @@ function buildDynamicCarousel(trackId, dataArray, isPlayable, hoverTextLabel) {
 buildDynamicCarousel('playablesTrack', playablesData, true, 'Play Now!');
 buildDynamicCarousel('creativesTrack', creativesData, false, 'Play Creative');
 
+/* Three highlighted games shown in the hero, matching the featured layout. */
+const quickGrid = document.getElementById('featuredQuickGrid');
+const quickStyles = ['quick-miner', 'quick-idle', 'quick-sniper'];
+const quickIcons = ['⛏', '🪨', '🎯'];
+const quickDescriptions = [
+  'Tap to mine Bitcoin and upgrade your gear. Simple, addictive, rewarding.',
+  'Build your mine, hire workers, and earn while you are away.',
+  'Aim, plan, and take the shot. Short rounds, big impact.'
+];
+
+[1, 2, 3].forEach((dataIndex, position) => {
+  const item = playablesData[dataIndex];
+  if (!item) return;
+  const card = document.createElement('article');
+  card.className = `featured-quick-card ${quickStyles[position]}`;
+  card.innerHTML = `
+    <img src="${item.thumb}" alt="${item.title}" loading="lazy">
+    <div class="featured-quick-copy">
+      <span class="featured-quick-icon" aria-hidden="true">${quickIcons[position]}</span>
+      <h3>${item.title}</h3>
+      <p>${quickDescriptions[position]}</p>
+      <button type="button" class="quick-play-btn" aria-label="Play ${item.title}">▶&nbsp; Play</button>
+    </div>`;
+  card.querySelector('button').addEventListener('click', () => loadPlayable(item, true));
+  quickGrid.appendChild(card);
+});
+
 </script>
-<script src="site-effects.js"></script>
+<script src="emerald-interaction.js?v=20260901-1"></script>
 </body>
 </html>

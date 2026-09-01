@@ -320,6 +320,7 @@
     }
   }
 </style>
+<link rel="stylesheet" href="low-poly-theme.css?v=20260901-2" />
 </head>
 <body>
   <div id="particles-js" aria-hidden="true"></div>
@@ -335,9 +336,6 @@
         Explore a selection of high-converting video creatives <strong>produced as services for our company clients</strong>. These demos showcase our expertise in creating engaging user acquisition (UA) assets for publishers and studios worldwide.
       </p>
       <div class="gallery" id="gallery" tabindex="0"></div>
-      <div class="btn-wrapper">
-        <button id="toggleGalleryBtn" class="toggle-btn" aria-expanded="false" aria-controls="gallery">Show All Creatives</button>
-      </div>
     </section>
 
     <section class="testimonials" aria-label="Client testimonials">
@@ -381,96 +379,16 @@
     </div>
   </div>
 
-  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
-  <script src="content-data.js"></script>
+  <script src="content-data.js?v=20260901-2"></script>
 
   <script>
-    // Initialize particles background
-    particlesJS('particles-js', {
-      "particles": {
-        "number": {
-          "value": 80,
-          "density": {
-            "enable": true,
-            "value_area": 800
-          }
-        },
-        "color": {
-          "value": "#7c5cff"
-        },
-        "shape": {
-          "type": "circle"
-        },
-        "opacity": {
-          "value": 0.25,
-          "random": true,
-          "anim": {
-            "enable": false
-          }
-        },
-        "size": {
-          "value": 3,
-          "random": true,
-          "anim": {
-            "enable": false
-          }
-        },
-        "line_linked": {
-          "enable": true,
-          "distance": 140,
-          "color": "#7c5cff",
-          "opacity": 0.15,
-          "width": 1
-        },
-        "move": {
-          "enable": true,
-          "speed": 1.2,
-          "direction": "none",
-          "random": true,
-          "straight": false,
-          "out_mode": "out",
-          "bounce": false
-        }
-      },
-      "interactivity": {
-        "detect_on": "canvas",
-        "events": {
-          "onhover": {
-            "enable": true,
-            "mode": "grab"
-          },
-          "onclick": {
-            "enable": true,
-            "mode": "push"
-          },
-          "resize": true
-        },
-        "modes": {
-          "grab": {
-            "distance": 140,
-            "line_linked": {
-              "opacity": 0.3
-            }
-          },
-          "push": {
-            "particles_nb": 4
-          }
-        }
-      },
-      "retina_detect": true
-    });
-
     // Creatives data
     const creativesData = window.creativesData;
 
     const galleryEl = document.getElementById('gallery');
-    const toggleBtn = document.getElementById('toggleGalleryBtn');
     const modal = document.getElementById('creativeModal');
     const modalVideo = document.getElementById('creativeVideo');
     const closeModalBtn = document.getElementById('closeModal');
-
-    const INITIAL_VISIBLE_COUNT = 6;
-    let showingAll = false;
 
     // Create card HTML string
     function createCard(item, index) {
@@ -491,15 +409,7 @@
     }
 
     function renderGallery() {
-      let itemsToShow = showingAll ? creativesData.length : INITIAL_VISIBLE_COUNT;
-      galleryEl.innerHTML = creativesData.map((item, idx) => {
-        if (idx < itemsToShow) {
-          return createCard(item, idx);
-        }
-        return '';
-      }).join('');
-      toggleBtn.textContent = showingAll ? 'Collapse' : 'Show All Creatives';
-      toggleBtn.setAttribute('aria-expanded', showingAll.toString());
+      galleryEl.innerHTML = creativesData.map((item, idx) => createCard(item, idx)).join('');
     }
 
     // Open modal with video playback
@@ -563,16 +473,6 @@
       }
     });
 
-    // Toggle gallery show all / collapse
-    toggleBtn.addEventListener('click', () => {
-      showingAll = !showingAll;
-      renderGallery();
-      // Scroll smoothly to gallery top when collapsing
-      if (!showingAll) {
-        galleryEl.scrollIntoView({ behavior: 'smooth' });
-      }
-    });
-
     // Focus trap for modal accessibility
     let lastFocusedElement = null;
     function trapFocus(element) {
@@ -610,6 +510,6 @@
     // Initial render
     renderGallery();
   </script>
-  <script src="site-effects.js"></script>
+  <script src="emerald-interaction.js?v=20260901-1"></script>
 </body>
 </html>
