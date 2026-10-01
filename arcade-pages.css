@@ -1,0 +1,64 @@
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800;900&family=DM+Sans:wght@400;500;600;700&display=swap');
+
+.arcade-page {
+  --bg:#090d13 !important;--text:#f4f4e9 !important;--muted:#b3bbc1 !important;
+  --lime:#dcff45;--orange:#ff7650;--panel:#101b20;--line:rgba(220,255,69,.24);
+  --neon:#dcff45 !important;--purple:#ff7650 !important;
+  min-height:100%;background:#090d13 !important;color:#f4f4e9 !important;
+  font-family:'DM Sans',sans-serif !important;
+}
+.arcade-page::before {background:radial-gradient(circle at 82% 0%,rgba(59,104,101,.19),transparent 30%),#090d13 !important;}
+.arcade-page::after {opacity:.09 !important;background-size:55px 55px !important;}
+.arcade-page :focus-visible {outline:2px solid var(--lime);outline-offset:3px;}
+.arcade-page .container {max-width:1260px !important;padding:45px clamp(20px,5vw,70px) 90px !important;}
+.arcade-page .container > header {
+  display:flex;align-items:flex-end;justify-content:space-between;gap:25px;
+  margin:0 0 45px;padding:52px clamp(24px,5vw,65px) !important;
+  border:1px solid rgba(220,255,69,.33) !important;border-radius:5px !important;
+  background:linear-gradient(90deg,rgba(9,13,19,.94),rgba(9,13,19,.67)),url('assets/emerald-jungle-background.jpg') center/cover !important;
+  box-shadow:10px 10px 0 rgba(0,0,0,.26) !important;
+}
+.arcade-page .page-kicker {display:block;margin-bottom:17px;color:var(--lime);font-size:.7rem;font-weight:800;letter-spacing:.18em;text-transform:uppercase;}
+.arcade-page .container > header h1 {margin:0;color:#f4f4e9 !important;font:900 clamp(3.5rem,7vw,7rem)/.83 'Barlow Condensed',Impact,sans-serif !important;letter-spacing:-.025em;text-transform:uppercase;}
+.arcade-page .container > header h1 em {display:block;color:var(--lime);font-style:normal;}
+.arcade-page .page-lead {margin:25px 0 0;color:#c4cfca;font-size:1rem;}
+.arcade-page .back-btn {display:inline-flex;align-items:center;justify-content:center;min-width:165px;padding:14px 18px;border:1px solid var(--lime) !important;border-radius:3px !important;color:#0d1517 !important;background:var(--lime) !important;box-shadow:4px 4px 0 rgba(220,255,69,.32) !important;font:800 .66rem 'DM Sans',sans-serif;letter-spacing:.11em;white-space:nowrap;text-decoration:none;transition:transform .2s,box-shadow .2s !important;}
+.arcade-page .back-btn:hover {transform:translate(2px,2px) !important;box-shadow:2px 2px 0 rgba(220,255,69,.32) !important;filter:none;}
+.arcade-page .container > section > p:first-child {max-width:800px;margin:0 0 32px !important;color:#b7c5c0 !important;font-size:.98rem !important;line-height:1.7;}
+.arcade-page .container > section > p:first-child strong {color:#f4f4e9;}
+.arcade-page .gallery {grid-template-columns:repeat(auto-fill,minmax(205px,1fr)) !important;gap:22px !important;justify-items:stretch;margin-bottom:70px;}
+.arcade-page .card {width:100%;max-width:none !important;border:1px solid rgba(255,255,255,.14) !important;border-radius:5px !important;background:#121b1f !important;box-shadow:none !important;transform:none !important;transition:transform .25s,border-color .25s !important;}
+.arcade-page .card:hover,.arcade-page .card:focus-within {transform:translateY(-6px) !important;border-color:var(--lime) !important;box-shadow:0 16px 30px rgba(0,0,0,.22) !important;}
+.arcade-page .thumb {background:#050809;border-radius:0;}
+.arcade-page .play-overlay {border-radius:0;background:rgba(8,16,17,.65);}
+.arcade-page .card-content {background:#121b1f;}
+.arcade-page .card-title {font:800 1.35rem/1.08 'Barlow Condensed',Impact,sans-serif;letter-spacing:.02em;text-transform:uppercase;color:#f4f4e9 !important;}
+.arcade-page .card-note {color:#a9b7b1 !important;font-size:.7rem;}
+.arcade-page .play-btn,.arcade-page .toggle-btn {border:1px solid var(--lime) !important;border-radius:3px !important;background:var(--lime) !important;color:#111815 !important;box-shadow:4px 4px 0 rgba(220,255,69,.3) !important;font:800 .72rem 'DM Sans',sans-serif;letter-spacing:.1em;text-transform:uppercase;}
+.arcade-page .play-btn:hover,.arcade-page .toggle-btn:hover {box-shadow:2px 2px 0 rgba(220,255,69,.3) !important;}
+.arcade-page section.testimonials,.arcade-page section.contact,.arcade-page .content {padding:clamp(24px,4vw,50px) !important;border:1px solid rgba(220,255,69,.22) !important;border-radius:5px !important;background:#121b20 !important;box-shadow:none !important;}
+.arcade-page section.testimonials h2,.arcade-page section.contact h2 {color:#f4f4e9 !important;font:900 clamp(2.3rem,4vw,4rem)/.95 'Barlow Condensed',Impact,sans-serif !important;text-transform:uppercase;text-align:left !important;}
+.arcade-page .testimonial-card {border:1px solid rgba(255,255,255,.13) !important;border-radius:4px;background:#0d1619 !important;box-shadow:none !important;}
+.arcade-page .testimonial-author,.arcade-page .contact-info a,.arcade-page .content h2,.arcade-page .content a {color:var(--lime) !important;}
+.arcade-page .contact-info {margin:70px auto;}
+.arcade-page .contact-info p {color:#bccac5 !important;}
+.arcade-page .modal {background:rgba(3,7,10,.9);}
+.arcade-page .modal-content {border:1px solid rgba(220,255,69,.55);border-radius:5px;background:#121b20;box-shadow:0 25px 80px rgba(0,0,0,.5);}
+.arcade-page .modal-close {border-radius:3px;background:var(--lime);color:#0b1213;}
+.arcade-page.arcade-privacy .container {max-width:980px !important;}
+.arcade-page.arcade-privacy .content {line-height:1.7;}
+.arcade-page.arcade-privacy .content h2 {font:800 1.7rem 'Barlow Condensed',Impact,sans-serif;text-transform:uppercase;letter-spacing:.02em;}
+.arcade-page.arcade-privacy .content p {color:#b9c6c2;}
+.arcade-page.arcade-privacy .last-updated {color:#91a09b;}
+@media (max-width:650px) {
+  .arcade-page .container {padding:20px 17px 70px !important;}
+  .arcade-page .container > header {align-items:flex-start;flex-direction:column;padding:35px 24px !important;}
+  .arcade-page .container > header h1 {font-size:clamp(3.6rem,14vw,5.5rem) !important;}
+  .arcade-page .gallery {grid-template-columns:repeat(2,minmax(0,1fr)) !important;gap:12px !important;}
+  .arcade-page .card-title {font-size:1.13rem;}
+  .arcade-page .card-content {padding:12px;}
+  .arcade-page .content {padding:24px !important;}
+}
+@media (prefers-reduced-motion:reduce) {
+  .arcade-page *, .arcade-page *::before,.arcade-page *::after {scroll-behavior:auto !important;transition-duration:.01ms !important;}
+}

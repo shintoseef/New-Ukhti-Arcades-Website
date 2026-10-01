@@ -1,0 +1,190 @@
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800;900&family=DM+Sans:wght@400;500;600;700&display=swap');
+
+/* Home page art direction: a playable arcade lobby. */
+.arcade-home {
+  --bg: #090d13 !important;
+  --text: #f4f4e9 !important;
+  --muted: #b3bbc1 !important;
+  --lime: #dcff45;
+  --orange: #ff7650;
+  --panel: #101b20;
+  --line: rgba(220,255,69,.24);
+  --neon: #dcff45 !important;
+  --purple: #ff7650 !important;
+  color: var(--text);
+  background: var(--bg) !important;
+  font-family: 'DM Sans',sans-serif;
+}
+.arcade-home ::selection { background: var(--lime); color: #111; }
+.arcade-home :focus-visible { outline: 2px solid var(--lime); outline-offset: 4px; }
+.arcade-home body::before { display: none; }
+.arcade-home::before { background: radial-gradient(circle at 85% 5%,rgba(44,87,92,.24),transparent 32%),#090d13 !important; }
+.arcade-home::after { opacity: .1 !important; background-size: 56px 56px !important; }
+.arcade-home h1,.arcade-home h2,.arcade-home h3 { font-family: 'Barlow Condensed', Impact, sans-serif; }
+.arcade-home a { -webkit-tap-highlight-color: transparent; }
+.arcade-home nav {
+  min-height: 76px;
+  padding: 13px clamp(20px,4.4vw,80px) !important;
+  background: rgba(9,13,19,.86) !important;
+  border-bottom: 1px solid rgba(255,255,255,.12) !important;
+  box-shadow: none !important;
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+}
+.arcade-home .logo {
+  display:flex;align-items:center;gap:10px;
+  color:#f4f4e9 !important;text-decoration:none;font-family:'Barlow Condensed',Impact,sans-serif;
+  font-size:clamp(1.3rem,2vw,1.6rem);font-weight:900;letter-spacing:.035em;line-height:1;
+  -webkit-text-fill-color:currentColor !important;
+}
+.arcade-home .logo-mark { display:inline-grid;place-items:center;width:34px;height:34px;border-radius:9px;background:var(--lime);color:#0a1115;font-size:1.55rem;animation:markTurn 12s linear infinite; }
+.arcade-home .logo-accent {color:var(--lime)}
+.arcade-home .nav-links { gap:clamp(14px,2vw,30px); }
+.arcade-home .nav-links > a:not(.contact-badge),.arcade-home .dropdown > a { margin:0;color:#dce5dd !important;font-size:.73rem;font-weight:800;letter-spacing:.13em;text-transform:uppercase; }
+.arcade-home .dropdown {margin:0}
+.arcade-home .dropdown > a {padding:10px 2px;border-radius:0}
+.arcade-home .dropdown-content {top:37px;background:#121c1e !important;border:1px solid var(--line) !important;border-radius:8px !important;min-width:240px;}
+.arcade-home .dropdown-content a {font-size:.76rem !important;letter-spacing:.02em;text-transform:none !important;}
+.arcade-home .contact-badge,.arcade-home .view-more-btn {
+  display:inline-flex;align-items:center;justify-content:space-between;gap:25px;
+  margin:0;padding:15px 20px;border:1px solid var(--lime) !important;border-radius:3px !important;
+  color:#0d1517 !important;background:var(--lime) !important;box-shadow:4px 4px 0 rgba(220,255,69,.35) !important;
+  font-family:'DM Sans',sans-serif;font-size:.72rem !important;font-weight:800;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;
+  transition:transform .2s ease,box-shadow .2s ease,background .2s ease !important;
+}
+.arcade-home .contact-badge {padding:12px 15px;font-size:.69rem !important;}
+.arcade-home .contact-badge:hover,.arcade-home .view-more-btn:hover { transform:translate(2px,2px) !important;box-shadow:2px 2px 0 rgba(220,255,69,.35) !important;filter:none; }
+.arcade-home .hero-layout {
+  position:relative;isolation:isolate;display:grid !important;
+  grid-template-columns:minmax(0,.98fr) minmax(0,1.02fr);gap:clamp(35px,5vw,94px);
+  align-items:center !important;min-height:min(870px,100svh);max-width:none;
+  padding:clamp(135px,12vw,190px) clamp(24px,7vw,130px) 95px !important;
+  background-color:#0a1317 !important;
+  background-image:linear-gradient(90deg,rgba(7,12,18,.9) 3%,rgba(7,12,18,.54) 45%,rgba(7,12,18,.35)),url('assets/emerald-jungle-background.jpg') !important;
+  background-size:cover !important;background-position:center !important;
+  overflow:hidden;
+}
+.arcade-home .hero-layout::before {display:block;content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(0deg,#090d13 0%,transparent 25%),radial-gradient(circle at 56% 42%,rgba(220,255,69,.09),transparent 40%);clip-path:none;width:auto;height:auto;opacity:1;}
+.arcade-home .hero-copy {max-width:720px;text-align:left;}
+.arcade-home .hero-eyebrow,.arcade-home .section-kicker,.arcade-home .hero-meta,.arcade-home .hero-scroll-cue,.arcade-home .gallery-toolbar {font-size:.69rem;font-weight:800;letter-spacing:.17em;text-transform:uppercase;}
+.arcade-home .hero-eyebrow {display:flex;align-items:center;gap:11px;color:var(--lime);white-space:nowrap;}
+.arcade-home .status-dot {display:inline-block;flex:none;width:8px;height:8px;border-radius:50%;background:var(--lime);box-shadow:0 0 13px var(--lime);animation:pulse 2s ease-in-out infinite;}
+.arcade-home .eyebrow-line {width:28px;height:1px;background:rgba(220,255,69,.45)}
+.arcade-home .hero-copy h1 {margin:23px 0 19px;max-width:800px;padding:0;color:#f3f3e8 !important;font-size:clamp(5rem,9.8vw,10rem) !important;font-weight:900;line-height:.78;letter-spacing:-.045em;text-align:left !important;text-transform:uppercase;}
+.arcade-home .hero-copy h1 span {display:block;color:#f3f3e8 !important;white-space:nowrap;}
+.arcade-home .hero-copy h1 em,.arcade-home .section-heading h2 em,.arcade-home .about-founder h2 em,.arcade-home .about h2 em {display:block;color:var(--lime);font-style:normal;}
+.arcade-home .hero-copy .subtitle {max-width:520px;margin:29px 0 28px;color:#d3dbd8 !important;font-size:clamp(.95rem,1.1vw,1.1rem);line-height:1.7;text-align:left;}
+.arcade-home .hero-actions {display:flex;align-items:center;flex-wrap:wrap;gap:19px;}
+.arcade-home .ghost-button {display:inline-flex;align-items:center;gap:12px;padding:14px 3px;border:0;border-bottom:1px solid rgba(255,255,255,.58);color:#fff;background:transparent;font:800 .7rem 'DM Sans',sans-serif;letter-spacing:.13em;cursor:pointer;transition:color .2s,border-color .2s;}
+.arcade-home .ghost-button:hover {color:var(--lime);border-color:var(--lime)}
+.arcade-home .hero-meta {display:flex;gap:23px;flex-wrap:wrap;margin-top:clamp(40px,5vw,83px);color:#d0d9d3;font-size:.57rem;letter-spacing:.12em;}
+.arcade-home .hero-meta b {color:var(--lime);font-weight:800;}
+.arcade-home .featured-showcase {position:relative;display:grid;grid-template-columns:minmax(0,.63fr) minmax(0,1fr);gap:clamp(12px,1.5vw,30px);min-height:0;padding:clamp(18px,2vw,30px);border:1px solid rgba(220,255,69,.55);border-radius:12px;background:linear-gradient(130deg,rgba(23,44,42,.94),rgba(9,20,22,.96));box-shadow:14px 14px 0 rgba(0,0,0,.4),0 0 50px rgba(220,255,69,.08);transform:rotate(1deg);transition:transform .35s ease,box-shadow .35s ease;}
+.arcade-home .featured-showcase:hover {transform:rotate(0deg) translateY(-4px);box-shadow:14px 18px 0 rgba(0,0,0,.35),0 0 65px rgba(220,255,69,.13)}
+.arcade-home .featured-showcase::before {content:'✳';position:absolute;right:-20px;top:-28px;display:grid;place-items:center;width:66px;height:66px;border-radius:50%;background:var(--orange);color:#121212;font-size:2.2rem;font-weight:900;animation:markTurn 13s linear infinite;}
+.arcade-home .featured-label {display:inline-flex;gap:8px;align-items:center;margin:0 0 15px;padding:0;border:0;color:var(--lime);background:none;font-size:.58rem;letter-spacing:.16em;}
+.arcade-home .featured-label .status-dot {width:6px;height:6px}
+.arcade-home .featured-details .active-player-title {font-size:clamp(2rem,3vw,3.7rem);line-height:.95;text-transform:uppercase;}
+.arcade-home .featured-details p {font-size:.82rem;line-height:1.6;color:#becbc8;}
+.arcade-home .featured-tags span {border-radius:2px;background:rgba(220,255,69,.09);border-color:rgba(220,255,69,.3);color:#e9ffbd;font-size:.59rem;letter-spacing:.1em;}
+.arcade-home .featured-showcase .player-column {max-width:290px;}
+.arcade-home .active-player-wrapper {border:2px solid rgba(220,255,69,.5) !important;border-radius:7px !important;background:#000 !important;box-shadow:0 22px 40px rgba(0,0,0,.35) !important;}
+.arcade-home .featured-quick-grid {gap:16px;margin:0;}
+.arcade-home .featured-quick-card {grid-template-columns:105px minmax(0,1fr);gap:15px;min-height:170px;height:auto;padding:10px;border:1px solid rgba(255,255,255,.15);border-radius:5px;background:#111c20;box-shadow:none;transition:transform .25s ease,border-color .25s ease;}
+.arcade-home .featured-quick-card:hover {transform:translateY(-5px);border-color:var(--lime)}
+.arcade-home .featured-quick-card > img {min-height:150px;border-radius:2px;}
+.arcade-home .featured-quick-icon {display:none}
+.arcade-home .featured-quick-card h3 {margin:7px 0 6px;color:#f3f3e8;font-size:1.45rem;line-height:1;letter-spacing:.01em;text-transform:uppercase;}
+.arcade-home .featured-quick-card p {display:-webkit-box;overflow:hidden;-webkit-box-orient:vertical;-webkit-line-clamp:2;color:#aebebb;font-size:.71rem;line-height:1.5;}
+.arcade-home .quick-play-btn {min-width:0;margin-top:auto;padding:7px 0;border:0;border-bottom:1px solid var(--lime);border-radius:0;color:var(--lime);background:none;box-shadow:none;font:800 .63rem 'DM Sans',sans-serif;letter-spacing:.12em;text-align:left;cursor:pointer;}
+.arcade-home .quick-play-btn:hover {transform:none;box-shadow:none;color:white;}
+.arcade-home .hero-scroll-cue {position:absolute;right:clamp(20px,7vw,130px);bottom:31px;display:flex;gap:10px;align-items:center;color:#d1dbd3;font-size:.58rem;}
+.arcade-home .hero-scroll-cue span:last-child {color:var(--lime);font-size:1.2rem;animation:nudge 1.8s ease-in-out infinite;}
+.arcade-home .ticker {overflow:hidden;border-block:1px solid #141b1d;background:var(--lime);color:#111815;}
+.arcade-home .ticker-track {display:flex;gap:30px;width:max-content;padding:11px 0;white-space:nowrap;font:900 1.15rem 'Barlow Condensed',Impact,sans-serif;letter-spacing:.08em;animation:ticker 30s linear infinite;}
+.arcade-home .ticker-track span {font-size:1.1rem;}
+.arcade-home .showcase {padding:110px clamp(22px,7vw,130px) 90px !important;background:#090d13 !important;border:0;}
+.arcade-home .section-heading {max-width:1100px;margin:0 auto 38px;}
+.arcade-home .section-kicker {display:block;color:var(--lime);font-size:.7rem;letter-spacing:.17em;}
+.arcade-home .section-heading h2,.arcade-home .about-founder h2,.arcade-home .about h2 {margin:15px 0 12px;color:#f4f4e9 !important;font-size:clamp(3.8rem,7vw,7.5rem) !important;font-weight:900;line-height:.82;letter-spacing:-.025em;text-align:left !important;text-transform:uppercase;}
+.arcade-home .section-heading h2 em {display:inline;color:var(--lime)}
+.arcade-home .section-heading .carousel-description {max-width:590px;margin:24px 0 0;padding:0;color:#aebbb8 !important;font-size:.96rem;line-height:1.6;text-align:left;}
+.arcade-home .gallery-toolbar {display:flex;align-items:center;justify-content:space-between;gap:20px;max-width:1100px;margin:0 auto 10px;padding-bottom:16px;border-bottom:1px solid rgba(255,255,255,.18);color:#d9e0db;font-size:.64rem;}
+.arcade-home .filter-controls {display:flex;gap:6px;flex-wrap:wrap;}
+.arcade-home .filter-chip {padding:9px 13px;border:1px solid rgba(255,255,255,.22);border-radius:2px;color:#b8c4bf;background:transparent;font:800 .6rem 'DM Sans',sans-serif;letter-spacing:.12em;cursor:pointer;transition:background .2s,color .2s,border-color .2s;}
+.arcade-home .filter-chip:hover,.arcade-home .filter-chip.is-active {border-color:var(--lime);color:#101514;background:var(--lime)}
+.arcade-home .carousel-wrapper {max-width:1100px !important;padding:18px 2px 23px;scrollbar-width:thin;scrollbar-color:var(--lime) #182021;}
+.arcade-home .carousel-track {gap:18px !important;}
+.arcade-home .carousel-item {width:169px !important;height:246px !important;flex:none;border:1px solid rgba(255,255,255,.18) !important;border-radius:5px !important;box-shadow:none !important;cursor:pointer;transition:transform .25s ease,border-color .25s ease !important;}
+.arcade-home .carousel-item:hover,.arcade-home .carousel-item:focus-visible {transform:translateY(-7px) !important;border-color:var(--lime) !important;}
+.arcade-home .carousel-item img {filter:brightness(.85) saturate(.9) !important;}
+.arcade-home .carousel-item:hover img,.arcade-home .carousel-item:focus-visible img {filter:brightness(.45) !important;}
+.arcade-home .hover-text {color:var(--lime);font:900 1.45rem 'Barlow Condensed',Impact,sans-serif;letter-spacing:.04em;text-shadow:0 2px 12px #000;}
+.arcade-home .carousel-item:focus-visible .hover-text {opacity:1}
+.arcade-home .view-more-container {max-width:1100px;margin:0 auto 105px;text-align:right;}
+.arcade-home .creative-heading {padding-top:28px;}
+.arcade-home .creative-preview {width:min(850px,100%);grid-template-columns:minmax(0,1fr) minmax(0,260px);gap:30px;margin:40px auto 45px;padding:clamp(20px,3vw,40px);border:1px solid rgba(220,255,69,.28);border-radius:5px;background:linear-gradient(120deg,#15262a,#10191c);box-shadow:12px 12px 0 #050909;}
+.arcade-home .creative-preview .active-player-title {font-size:clamp(2.3rem,4vw,4.5rem);line-height:.9;text-transform:uppercase;}
+.arcade-home .creative-preview-copy p {color:#bdcbc7;}
+.arcade-home .about-founder {position:relative;max-width:none !important;margin:0 !important;padding:clamp(75px,8vw,130px) clamp(22px,11vw,190px) !important;border:0;border-top:1px solid rgba(255,255,255,.12);border-radius:0;background:#121c20;text-align:left !important;}
+.arcade-home .about-founder::after {content:'✳';position:absolute;top:70px;right:8%;color:rgba(220,255,69,.09);font-size:clamp(8rem,18vw,22rem);line-height:1;pointer-events:none;}
+.arcade-home .about-founder h2 {position:relative;max-width:850px;margin-bottom:30px;}
+.arcade-home .about-founder h2 em {color:var(--orange)}
+.arcade-home .about-founder p {position:relative;max-width:720px;margin:0 0 17px;color:#bdcbc7 !important;font-size:.94rem;line-height:1.8;}
+.arcade-home .about-founder strong {color:#fff}
+.arcade-home .about {max-width:none !important;margin:0 !important;padding:clamp(80px,9vw,140px) clamp(22px,11vw,190px) !important;border:0 !important;border-radius:0;background:var(--lime) !important;color:#101716;text-align:left !important;}
+.arcade-home .about .section-kicker,.arcade-home .about h2,.arcade-home .about h2 em {color:#101716 !important;}
+.arcade-home .about p {max-width:630px;margin:28px 0;color:#253025;font-size:1rem;line-height:1.7;}
+.arcade-home .about .view-more-btn {border-color:#101716 !important;color:var(--lime) !important;background:#101716 !important;box-shadow:4px 4px 0 rgba(16,23,22,.35) !important;}
+.arcade-home footer {display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;padding:34px clamp(22px,7vw,130px);background:#080c11;border:0;color:#929f9c;text-align:left;}
+.arcade-home footer p {margin:0;font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;}
+.arcade-home footer .footer-brand {font:900 1.45rem 'Barlow Condensed',Impact,sans-serif;color:#f3f3e8;}
+.arcade-home footer span {margin:0 15px;color:var(--lime)}
+.arcade-home footer a {color:#c6d0cb;}
+.arcade-home .background-cursor-glow {opacity:.55;}
+@keyframes pulse {50% {opacity:.5;box-shadow:0 0 4px var(--lime)}}
+@keyframes nudge {50% {transform:translateY(5px)}}
+@keyframes ticker {to {transform:translateX(-50%)}}
+@keyframes markTurn {to {transform:rotate(360deg)}}
+@media (max-width:1100px) {
+  .arcade-home .hero-layout {grid-template-columns:1fr;gap:44px;padding-top:145px !important;}
+  .arcade-home .hero-copy {max-width:720px;}
+  .arcade-home .hero-copy h1 {font-size:clamp(5.8rem,15vw,9rem) !important;}
+  .arcade-home .featured-showcase {max-width:740px;}
+  .arcade-home .hero-scroll-cue {display:none;}
+}
+@media (max-width:700px) {
+  .arcade-home nav {min-height:0;padding:13px 14px !important;flex-direction:row;gap:8px;}
+  .arcade-home .logo {gap:6px;font-size:1.13rem;}
+  .arcade-home .logo-mark {width:27px;height:27px;font-size:1.35rem;}
+  .arcade-home .nav-links {gap:10px;flex-wrap:nowrap;}
+  .arcade-home .nav-links > a:not(.contact-badge),.arcade-home .dropdown {display:none;}
+  .arcade-home .contact-badge {padding:9px 10px;font-size:.57rem !important;white-space:nowrap;}
+  .arcade-home .hero-layout {padding:120px 20px 65px !important;background-position:center top !important;}
+  .arcade-home .hero-eyebrow {font-size:.55rem;gap:7px;}
+  .arcade-home .hero-copy h1 {font-size:clamp(4.25rem,17vw,7rem) !important;}
+  .arcade-home .hero-copy .subtitle {margin-top:20px;font-size:.92rem;}
+  .arcade-home .hero-meta {gap:10px;margin-top:35px;font-size:.54rem;}
+  .arcade-home .featured-showcase {grid-template-columns:1fr;gap:15px;transform:none;}
+  .arcade-home .featured-showcase:hover {transform:translateY(-3px);}
+  .arcade-home .featured-showcase .player-column {justify-self:center;width:100%;max-width:265px;}
+  .arcade-home .featured-showcase::before {right:-10px;top:-20px;width:44px;height:44px;font-size:1.5rem;}
+  .arcade-home .featured-details .active-player-title {font-size:2.5rem;}
+  .arcade-home .featured-quick-grid {grid-template-columns:1fr;}
+  .arcade-home .featured-quick-card {min-height:145px;grid-template-columns:95px minmax(0,1fr);}
+  .arcade-home .featured-quick-card > img {min-height:125px;}
+  .arcade-home .showcase {padding:75px 20px 40px !important;}
+  .arcade-home .section-heading h2,.arcade-home .about-founder h2,.arcade-home .about h2 {font-size:clamp(3.4rem,13vw,5.4rem) !important;}
+  .arcade-home .gallery-toolbar {align-items:flex-start;flex-direction:column;}
+  .arcade-home .filter-chip {padding:8px 10px;}
+  .arcade-home .carousel-item {width:136px !important;height:205px !important;}
+  .arcade-home .view-more-container {margin-bottom:85px;}
+  .arcade-home .creative-preview {grid-template-columns:1fr;}
+  .arcade-home .creative-preview .player-column {justify-self:center;max-width:230px;}
+  .arcade-home .about-founder,.arcade-home .about {padding:75px 22px !important;}
+  .arcade-home footer {padding:30px 22px;}
+}
+@media (prefers-reduced-motion:reduce) {
+  .arcade-home .status-dot,.arcade-home .logo-mark,.arcade-home .featured-showcase::before,.arcade-home .ticker-track,.arcade-home .hero-scroll-cue span:last-child {animation:none !important;}
+  .arcade-home *, .arcade-home *::before,.arcade-home *::after {scroll-behavior:auto !important;transition-duration:.01ms !important;}
+}

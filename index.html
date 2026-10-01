@@ -406,44 +406,46 @@ footer{ text-align:center; padding:40px; color:var(--muted); border-top:1px soli
 }
 </style>
 <link rel="stylesheet" href="low-poly-theme.css?v=20260901-2">
+<link rel="stylesheet" href="arcade-home.css?v=20260930-1">
 </head>
 
-<body>
-<nav>
-<div class="logo">🎮 Ukhti Arcades</div>
+<body class="arcade-home">
+<nav aria-label="Main navigation">
+<a class="logo" href="index.html" aria-label="Ukhti Arcades home"><span class="logo-mark" aria-hidden="true">✳</span><span>UKHTI<span class="logo-accent">/</span>ARCADES</span></a>
 <div class="nav-links">
 
-<a href="#about-founder">About</a>
+<a href="#work">Work</a>
+<a href="#about-founder">Studio</a>
 
 <div class="dropdown" onclick="toggleDropdown(this)">
-<a>Services ▾</a>
+<a href="#work">Services ▾</a>
 <div class="dropdown-content">
 <a href="playables.html" onclick="clickAnimation(event)">Playable Ads Development</a>
 <a href="marketing-creatives.html" onclick="clickAnimation(event)">Marketing Creatives</a>
 </div>
 </div>
 
-<a href="privacy.html">Privacy Policy</a>
-
-<a href="mailto:touseef@ukhti.org" class="contact-badge">touseef@ukhti.org</a>
+<a href="mailto:touseef@ukhti.org" class="contact-badge">LET'S TALK <span aria-hidden="true">↗</span></a>
 
 </div>
 </nav>
 
 <section class="hero hero-layout">
   <div class="hero-copy">
-    <h1><span>Playable Ads</span> That Feel Like Games</h1>
-    <p class="subtitle">We design lightweight, fun, and high-converting playable ads using <strong class="tech-cocos">Cocos</strong>, <strong class="tech-luna">Luna</strong> and <strong class="tech-unity">Unity</strong>.</p>
-    <a href="playables.html" class="view-more-btn hero-cta">🎮&nbsp; See Our Playables</a>
+    <div class="hero-eyebrow"><span class="status-dot"></span> INDEPENDENT GAME STUDIO <span class="eyebrow-line"></span> EST. 2026</div>
+    <h1><span>PLAY IS</span> <em>THE POINT.</em></h1>
+    <p class="subtitle">We turn a few seconds of attention into a game worth playing. Bold playable ads, sharp creative, and ideas built to move thumbs.</p>
+    <div class="hero-actions"><a href="#work" class="view-more-btn hero-cta">EXPLORE THE ARCADE <span aria-hidden="true">↗</span></a><button class="ghost-button" type="button" id="surprise-playable">SURPRISE ME <span aria-hidden="true">✳</span></button></div>
+    <div class="hero-meta"><span><b>01 /</b> PLAYABLE ADS</span><span><b>02 /</b> VIDEO CREATIVE</span><span><b>03 /</b> GAME SYSTEMS</span></div>
   </div>
 
   <div class="featured-showcase" id="active-players-display">
     <div class="featured-details">
-      <span class="featured-label">★ Featured Playable</span>
+      <span class="featured-label"><span class="status-dot"></span> NOW PLAYING / 001</span>
       <h2 class="active-player-title" id="active-playable-title">Loading Playable...</h2>
       <p id="featured-description">A relaxing word + solitaire experience. Swipe cards, build words, and clear beautiful landscapes.</p>
       <div class="featured-tags" aria-label="Featured playable categories">
-        <span>🎮&nbsp; Puzzle</span>
+        <span>INTERACTIVE</span>
         <span id="featured-engine" hidden>Cocos</span>
       </div>
     </div>
@@ -455,24 +457,26 @@ footer{ text-align:center; padding:40px; color:var(--muted); border-top:1px soli
   </div>
 
   <div class="featured-quick-grid" id="featuredQuickGrid" aria-label="Highlighted playables"></div>
+  <div class="hero-scroll-cue"><span>SCROLL TO EXPLORE</span><span aria-hidden="true">↓</span></div>
 </section>
 
-<section class="showcase">
+<div class="ticker" aria-hidden="true"><div class="ticker-track">PLAYABLE BY DESIGN <span>✳</span> BUILT TO BE PLAYED <span>✳</span> MAKE EVERY TAP COUNT <span>✳</span> PLAYABLE BY DESIGN <span>✳</span> BUILT TO BE PLAYED <span>✳</span> MAKE EVERY TAP COUNT <span>✳</span></div></div>
 
-  <h2 class="carousel-title">🕹️ Services: Playables for Clients</h2>
-  <p class="carousel-description">Explore interactive playables developed as services for our company clients. Click a thumbnail below to play instantly.</p>
+<section class="showcase" id="work">
+
+  <div class="section-heading"><span class="section-kicker">01 / SELECTED WORK</span><h2 class="carousel-title">THE GAME <em>IS THE AD.</em></h2><p class="carousel-description">Tap into the work. These playable experiences go from first impression to first move in seconds.</p></div>
+  <div class="gallery-toolbar"><span>PLAYABLES / <span id="playable-count">00</span></span><div class="filter-controls" role="group" aria-label="Filter playables by engine"><button type="button" class="filter-chip is-active" data-engine="all" aria-pressed="true">ALL</button><button type="button" class="filter-chip" data-engine="cocos" aria-pressed="false">COCOS</button><button type="button" class="filter-chip" data-engine="luna" aria-pressed="false">LUNA</button><button type="button" class="filter-chip" data-engine="unity" aria-pressed="false">UNITY</button></div></div>
 
   <div class="carousel-wrapper">
     <div class="carousel-track track-rtl" id="playablesTrack"></div>
   </div>
 
   <div class="view-more-container">
-    <a href="playables.html" class="view-more-btn">See All Playables Gallery</a>
+    <a href="playables.html" class="view-more-btn">VIEW ALL PLAYABLES <span aria-hidden="true">↗</span></a>
   </div>
 
 
-  <h2 class="carousel-title">🎬 Services: Video Creatives</h2>
-  <p class="carousel-description">Explore high-converting video creatives produced as services for our company clients. Click a thumbnail below to watch.</p>
+  <div class="section-heading creative-heading"><span class="section-kicker">02 / MOVING PICTURES</span><h2 class="carousel-title">STOP THE <em>SCROLL.</em></h2><p class="carousel-description">Game footage, concepts, and custom creative made to earn the next second of attention.</p></div>
 
   <div class="carousel-wrapper">
     <div class="carousel-track track-ltr" id="creativesTrack"></div>
@@ -480,9 +484,9 @@ footer{ text-align:center; padding:40px; color:var(--muted); border-top:1px soli
 
   <div class="creative-preview" id="active-creative-display">
     <div class="creative-preview-copy">
-      <span class="featured-label">▶ Selected Video Creative</span>
+      <span class="featured-label"><span class="status-dot"></span> ON SCREEN / SELECTED CREATIVE</span>
       <h3 class="active-player-title" id="active-creative-title">Loading Video...</h3>
-      <p>Choose any creative above to preview the complete video.</p>
+      <p>Choose a frame above and watch the full creative here.</p>
     </div>
     <div class="player-column">
       <div class="active-player-wrapper" id="creative-player-container">
@@ -492,13 +496,14 @@ footer{ text-align:center; padding:40px; color:var(--muted); border-top:1px soli
   </div>
 
   <div class="view-more-container">
-    <a href="marketing-creatives.html" class="view-more-btn">See All Creatives Gallery</a>
+    <a href="marketing-creatives.html" class="view-more-btn">VIEW ALL CREATIVES <span aria-hidden="true">↗</span></a>
   </div>
   
 </section>
 
 <section id="about-founder" class="about-founder">
-<h2>About the Founder</h2>
+<span class="section-kicker">03 / BEHIND THE PIXELS</span>
+<h2>SMALL STUDIO.<br><em>BIG PLAY ENERGY.</em></h2>
 <p>
 Ukhti Arcades was founded by <strong>Muhammad Touseef</strong>, a mobile game developer and playable ads specialist with several years of experience in the mobile gaming industry.
 </p>
@@ -514,15 +519,17 @@ This studio was created with the vision of building innovative mobile games whil
 </section>
 
 <section class="about">
-<h2>About Ukhti Arcades</h2>
+<span class="section-kicker">READY PLAYER TWO?</span>
+<h2>LET'S MAKE<br><em>SOMETHING PLAYABLE.</em></h2>
 <p>
 Ukhti Arcades builds mobile games and interactive playable ads focused on hybrid casual experiences. We specialize in rapid prototyping, Unity gameplay systems and high performance WebGL playables.
 </p>
+<a href="mailto:touseef@ukhti.org" class="view-more-btn">START A PROJECT <span aria-hidden="true">↗</span></a>
 </section>
 
 <footer>
-<p>© 2026 Ukhti Arcades</p>
-<p>Mobile Games • Playable Ads • Hybrid Casual Development</p>
+<p class="footer-brand">✳ UKHTI/ARCADES</p>
+<p>© 2026 Ukhti Arcades <span>PLAY ON.</span> <a href="privacy.html">Privacy</a></p>
 </footer>
 
 <script src="content-data.js?v=20260901-2"></script>
@@ -762,5 +769,6 @@ const quickDescriptions = [
 
 </script>
 <script src="emerald-interaction.js?v=20260901-1"></script>
+<script src="arcade-home.js?v=20260930-1"></script>
 </body>
 </html>
