@@ -16,17 +16,13 @@ window.playablesData = [
   { title: "Bitcoin Empire - Story", thumb: "optimized-thumbnails/playables/25.jpg", src: "playables/BE/Story playable.html", engine: "Luna", note: "Bitcoin Empire - Fumb Games" },
   { title: "Bitcoin Empire With Hook", thumb: "optimized-thumbnails/playables/26.jpg", src: "playables/BE/BE_AI/index.html", engine: "Luna", note: "Bitcoin Empire - Fumb Games" },
   { title: "Sniper Hunting - Variant 3", thumb: "optimized-thumbnails/playables/20.jpg", src: "playables/SniperHunting/index3.html", engine: "Cocos", note: "Sniper Hunting - HypeGames" },
-  { title: "Block Blast", thumb: "optimized-thumbnails/playables/19.jpg", src: "playables/BlockBlast/index.html", engine: "Luna", note: "Bitcoin BlockBlast - Fumb Games" },
   { title: "Cat Hide and Seek", thumb: "optimized-thumbnails/playables/14.jpg", src: "playables/Cat/index.html", engine: "Luna", note: "Cat Hide and Seek - OZI Games" },
   { title: "Piggy Tetris", thumb: "optimized-thumbnails/playables/1.jpg", src: "playables/Piggy/index.html", engine: "Luna", note: "Idle Bitcoin Mine - FumbGames" },
   { title: "Hero Making Tycoon", thumb: "optimized-thumbnails/playables/10.jpg", src: "playables/HMT/index.html", engine: "Luna", note: "Hero Making Tycoon - TapNation" },
   { title: "Piggy Collect", thumb: "optimized-thumbnails/playables/5.jpg", src: "playables/PiggyCollect/index.html", engine: "Luna", note: "Bitcoin Miner - Fumb Games" },
   { title: "Doll Dress Up", thumb: "optimized-thumbnails/playables/8.jpg", src: "playables/DDU/index.html", engine: "Unity", note: "Doll Dress Up - TapNation" },
   { title: "Hide And Seek", thumb: "optimized-thumbnails/playables/11.jpg", src: "playables/HideSeek/index.html", engine: "Luna", note: "Hide and Seek - Ozi Games" },
-  { title: "Pocket Monster Rush", thumb: "optimized-thumbnails/playables/13.jpg", src: "playables/PMR/index.html", engine: "Unity", note: "Pocket Monster Rush - Tapnation" },
-  { title: "Robot Rat Killer", thumb: "optimized-thumbnails/playables/7.jpg", src: "playables/RobotRat/index.html", engine: "Luna", note: "Robot Rat Killer - TapNation" },
-  { title: "Guess Their Answer", thumb: "optimized-thumbnails/playables/9.jpg", src: "playables/GTA/index.html", engine: "Unity", note: "Guess Their Answer - TapNation" },
-  { title: "Hero Making Tycoon Dressing", thumb: "optimized-thumbnails/playables/12.jpg", src: "playables/HMT2/index.html", engine: "Unity", note: "Hero Making Tycoon - Tapnation" }
+  { title: "Robot Rat Killer", thumb: "optimized-thumbnails/playables/7.jpg", src: "playables/RobotRat/index.html", engine: "Luna", note: "Robot Rat Killer - TapNation" }
 ];
 
 window.creativesData = [
