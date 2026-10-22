@@ -655,6 +655,7 @@ function loadPlayable(dataObj, scroll = true) {
     title.innerText = dataObj.title;
     const descriptions = {
       '4X Strategy Game Playable': 'Build your empire, expand your territory, and outmaneuver rival forces in this strategic playable experience.',
+      'World Solitaire': 'A relaxing word + solitaire experience. Swipe cards, build words, and clear beautiful landscapes.',
       'Bitcoin Miner V1': 'Tap to mine Bitcoin and upgrade your gear. Simple, addictive, and rewarding.',
       'Idle Mine - Cocos': 'Build your mine, hire workers, and earn rewards while you are away.',
       'Sniper Battle - HypeGames': 'Aim, plan, and take the shot. Short rounds with a big impact.'
@@ -750,7 +751,7 @@ const quickDescriptions = [
   'Aim, plan, and take the shot. Short rounds, big impact.'
 ];
 
-[1, 2, 3].forEach((dataIndex, position) => {
+[2, 3, 4].forEach((dataIndex, position) => {
   const item = playablesData[dataIndex];
   if (!item) return;
   const card = document.createElement('article');
