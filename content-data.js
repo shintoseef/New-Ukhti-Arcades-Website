@@ -3,7 +3,7 @@ window.playablesData = [
   { title: "4X Strategy Game Playable", thumb: "optimized-thumbnails/playables/4x-strategy-empire.jpg", src: "playables/4x-strategy-game-playable/index.html", engine: "Cocos", note: "???????" },
   { title: "World Solitaire", thumb: "optimized-thumbnails/playables/wordscapes-solitaire-tripledot.jpg", src: "playables/WordScapesSolitaire/index.html", engine: "Cocos", note: "Tripple Dot" },
   { title: "Blocks of Bitcoin DuckHook Playable", thumb: "optimized-thumbnails/playables/duckhook-blocks.jpg", src: "playables/blocks-of-bitcoin-duckhook/index.html", engine: "Luna", note: "Blocks of Bitcoin" },
-  { title: "Arrow Puzzle And Earn!", thumb: "optimized-thumbnails/playables/arrow-puzzle-earn.jpg", src: "playables/arrow-puzzle-and-earn/index.html", engine: "Luna", note: "Arrow Earn And Cash" },
+  { title: "Arrow Puzzle And Earn!", thumb: "optimized-thumbnails/playables/arrow-puzzle-earn.jpg", src: "playables/arrow-puzzle-and-earn/index.html", engine: "Cocos", note: "Arrow Earn And Cash" },
   { title: "Bitcoin Miner V1", thumb: "optimized-thumbnails/playables/28.jpg", src: "playables/BitcoinMinerV2/index.html", engine: "Cocos", note: "Bitcoin Miner - Fumb Games" },
   { title: "Idle Mine - Cocos", thumb: "optimized-thumbnails/playables/21.jpg", src: "playables/IdleMine/Idle Mine Cocos.html", engine: "Cocos", note: "Idle Mine - Cocos" },
   { title: "Sniper Battle - HypeGames", thumb: "optimized-thumbnails/playables/sniper-hypegames.jpg", src: "playables/SniperEmma/index.html", engine: "Cocos", note: "Sniper Battle - HypeGames" },

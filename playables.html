@@ -611,6 +611,17 @@
 
     // Initial render
     renderGallery();
+
+    // Homepage links can target a specific playable and open it directly here.
+    const requestedGame = new URLSearchParams(window.location.search).get('game');
+    if (requestedGame) {
+      const requestedIndex = playablesData.findIndex((item) => item.title === requestedGame);
+      if (requestedIndex >= 0) {
+        const requestedCard = galleryEl.querySelector(`[data-index="${requestedIndex}"]`);
+        requestedCard?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        window.setTimeout(() => openModal(requestedIndex), 180);
+      }
+    }
   </script>
   <script src="emerald-interaction.js?v=20260901-1"></script>
 </body>
